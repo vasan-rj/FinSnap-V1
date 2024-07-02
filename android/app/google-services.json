@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "336067723309",
+    "project_id": "finsnap-8ecb7",
+    "storage_bucket": "finsnap-8ecb7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336067723309:android:9a0e72fee4315462c038a4",
+        "android_client_info": {
+          "package_name": "com.example.finsnap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336067723309-0ijdbtja7vrb2autu9cm8dlt6asd3vgk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finsnap",
+            "certificate_hash": "b58e5c7132162cee04e656b6f444210bb001a023"
+          }
+        },
+        {
+          "client_id": "336067723309-cr7rntg2feudc2g989m91gkh9nqunvq2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5S188w8Ssp1PA6v61ncgVmStiQVtEeCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336067723309-cr7rntg2feudc2g989m91gkh9nqunvq2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
