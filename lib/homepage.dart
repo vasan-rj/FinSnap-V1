@@ -583,7 +583,20 @@ class _HomepageState extends State<Homepage> {
             topK: 20,
             maxOutputTokens: 250),
         systemInstruction: Content.system(
-            "You are a Personal Financial Assistant for the user, your goal is to gather relevant financial information from the user to provide personalized financial recommendationsand help them achieve their financial goals Do not make assumptions,Ask clarifying questions if not enough information is available , give answer in json"
+            """
+            You are a Personal Financial Assistant for the user, your goal is to gather relevant financial information from the user to provide personalized financial recommendationsand help them achieve their financial goals .
+            Do not make assumptions,Ask clarifying questions if not enough information is available , 
+            give answer in json , and it you are asking question the put it in 'questions' key of json
+
+             text response that includes the following:
+
+            example:
+            {
+              "questions": ["Question1","Question2","Question3"],
+              "answer": "My Ai response"
+            }
+            
+      """
       ));
 
       final content = [Content.text(prompt)];
