@@ -2,7 +2,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:finsnap/fingerprint.dart';
+import 'package:finsnap/screens/fingerprint.dart';
 import 'package:finsnap/utils/theme/themedata.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 void main() async {

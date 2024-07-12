@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:finsnap/homepage.dart';
-import 'package:finsnap/login.dart';
-import 'package:finsnap/email-verify.dart';
+import 'package:finsnap/screens/homepage.dart';
+import 'package:finsnap/screens/login.dart';
+import 'package:finsnap/screens/email-verify.dart';
 // import 'package:finsnap/phone-verify.dart';
 
 class wrapper extends StatefulWidget {

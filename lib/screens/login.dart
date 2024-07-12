@@ -322,8 +322,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:finsnap/forgetpassword.dart';
-import 'package:finsnap/signup.dart';
+import 'package:finsnap/screens/forgetpassword.dart';
+import 'package:finsnap/screens/signup.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 

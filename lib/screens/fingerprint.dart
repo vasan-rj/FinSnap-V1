@@ -169,7 +169,7 @@
 // }
 // GPT Code
 
-import 'package:finsnap/wrapper.dart';
+import 'package:finsnap/screens/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';

@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:finsnap/wrapper.dart';
-import 'package:finsnap/login.dart';
+import 'package:finsnap/screens/wrapper.dart';
+import 'package:finsnap/screens/login.dart';
 class Verify extends StatefulWidget {
   const Verify({super.key});
 
