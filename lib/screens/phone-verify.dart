@@ -110,7 +110,7 @@ class _PhoneVerifyState extends State<PhoneVerify> {
   Future<void> sendOtp() async {
     try {
       await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: '+91'+phoneNumberController.text,
+        phoneNumber: '+91${phoneNumberController.text}',
         verificationCompleted: (PhoneAuthCredential credential) {},
         verificationFailed: (FirebaseAuthException e) {
           Get.snackbar("Error Occurred", e.code);
@@ -133,14 +133,14 @@ class _PhoneVerifyState extends State<PhoneVerify> {
       body: ListView(
         shrinkWrap: true,
         children: [
-          Center(child: Text("Enter your phone number")),
-          Padding(
-            padding: const EdgeInsets.all(5),
+          const Center(child: Text("Enter your phone number")),
+          const Padding(
+            padding: EdgeInsets.all(5),
             child: Text("blah blah blah......"),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           phoneText(),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           otpButton(),
         ],
       ),
@@ -153,7 +153,7 @@ class _PhoneVerifyState extends State<PhoneVerify> {
       child: TextField(
         controller: phoneNumberController,
         keyboardType: TextInputType.number,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           prefixIcon: Icon(Icons.phone),
           labelText: "Enter Phone Number",
         ),
@@ -167,8 +167,8 @@ class _PhoneVerifyState extends State<PhoneVerify> {
         onPressed: () {
           sendOtp();
         },
-        child: Padding(
-          padding: const EdgeInsets.all(16),
+        child: const Padding(
+          padding: EdgeInsets.all(16),
           child: Text("Receive OTP"),
         ),
       ),

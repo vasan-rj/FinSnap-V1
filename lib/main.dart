@@ -1,92 +1,75 @@
 // import 'package:finsnap/wrapper.dart';
+import 'package:finsnap/screens/testing.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:finsnap/screens/fingerprint.dart';
 import 'package:finsnap/utils/theme/themedata.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  
-  // Initialize Firebase
-  try {
-    await Firebase.initializeApp();
-  } 
-  catch (e) {
-    print('Error initializing Firebase vasan: $e');
-    // Handle Firebase initialization error as needed
-  }
+import 'package:finsnap/services/firebase_messaging_setup.dart';
+import 'package:finsnap/services/notification.dart';
+import 'package:finsnap/screens/remainder.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:finsnap/permission/notification_permission.dart';
 
-  // Run the app
-  runApp(const MyApp());
+
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+
+import 'package:finsnap/services/firebase_messaging_setup.dart';
+
+
+// import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:timezone/data/latest.dart' as tz;
+
+// import 'package:pushnotitutefinal/firebase_options.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+
+final navigatorkey=GlobalKey<NavigatorState>();
+
+void main() async {
+
+  // Initialize Firebase
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    tz.initializeTimeZones();
+    
+    await NotificationService().initNotification();
+    await requestScheduleExactAlarmPermission();
+     
+     setupFirebaseMessagingx();
+
+   
+    // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    // final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+    // Run the app
+
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
       title: 'Flutter Demo',
-      color: Color.fromARGB(210, 5, 242, 155),
+      color: const Color.fromARGB(210, 5, 242, 155),
       themeMode: ThemeMode.dark,
       theme: TAppTheme.darkTheme,
-      home: const fingerprintPage(),
+      home:fingerprintPage(),
+      // routes: {
+      //   RemainderPage.route : (context) =>const RemainderPage(),
+      // },
     );
   }
 }
 
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key, required this.title});
-
-//   final String title;
-
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
-//   int _counter = 0;
-
-//   void _incrementCounter() {
-//     setState(() {
-//       _counter++;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-//         title: Text(widget.title),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             const Text('Vasan is You have pushed the button this many times:'),
-//             Text(
-//               '$_counter',
-//               style: Theme.of(context).textTheme.headlineMedium,
-//             ),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: _incrementCounter,
-//         tooltip: 'Increment',
-//         child: const Icon(Icons.add),
-//       ),
-//     );
-//   }
-// }
-
-// WidgetsFlutterBinding.ensureInitialized();
-//   // We're using the manual installation on non-web platforms since Google sign in plugin doesn't yet support Dart initialization.
-//   // See related issue: https://github.com/flutter/flutter/issues/96391
-
-//   // We store the app and auth to make testing with a named instance easier.
-//   app = await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-//   );

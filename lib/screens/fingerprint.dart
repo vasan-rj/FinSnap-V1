@@ -185,18 +185,18 @@ class _fingerprintPageState extends State<fingerprintPage> {
   final LocalAuthentication fingerprintauth = LocalAuthentication();
 
   checkAuth() async {
-    bool is_Available = await fingerprintauth.canCheckBiometrics;
-    if (is_Available) {
+    bool isAvailable = await fingerprintauth.canCheckBiometrics;
+    if (isAvailable) {
       bool result = await fingerprintauth.authenticate(
         localizedReason: "Scan Your FingerPrint to proceed",
       );
       if (result) {
-        Get.offAll(wrapper());
+        Get.offAll(const wrapper());
       } else {
         Get.snackbar("Error msg", "Authentication Failed");
       }
     } else {
-      Get.offAll(wrapper());
+      Get.offAll(const wrapper());
     }
   }
 
@@ -210,7 +210,7 @@ class _fingerprintPageState extends State<fingerprintPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "Fingerprint Authentication",
                 style: TextStyle(
                   fontSize: 24,
@@ -228,15 +228,15 @@ class _fingerprintPageState extends State<fingerprintPage> {
                 style: ElevatedButton.styleFrom(
                   // primary: Color.fromARGB(255, 33, 150, 243),
                   // onPrimary: Colors.white,
-                  backgroundColor: Color.fromARGB(210, 5, 242, 155) ,
+                  backgroundColor: const Color.fromARGB(210, 5, 242, 155) ,
                   // foregroundColor:
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   elevation: 5,
                 ),
-                child: Text(
+                child: const Text(
                   "Verify",
                   style: TextStyle(
                     fontSize: 18,

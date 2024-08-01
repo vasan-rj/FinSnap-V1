@@ -145,14 +145,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Check Mail", style: TextStyle(color: Color.fromARGB(210, 5, 242, 155))),
+            title: const Text("Check Mail", style: TextStyle(color: Color.fromARGB(210, 5, 242, 155))),
             content: Text("Password reset email has been sent to ${email.text}. Please check your mail.", maxLines: 4),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("OK", style: TextStyle(color: Color.fromARGB(210, 5, 242, 155))),
+                child: const Text("OK", style: TextStyle(color: Color.fromARGB(210, 5, 242, 155))),
               ),
             ],
           );
@@ -175,7 +175,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Forgot Password",
           style: TextStyle(color: Colors.white),
         ),
@@ -189,29 +189,29 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           ),
           child: IntrinsicHeight(
             child: isLoading
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                        Image.asset('assets/forget-password-asset.png'),
                       TextField(
                         controller: email,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           hintText: "Enter your Mail address",
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: const TextStyle(color: Colors.grey),
                           filled: true,
-                          fillColor: Color.fromARGB(190, 6, 34, 43),
+                          fillColor: const Color.fromARGB(190, 6, 34, 43),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
                             borderSide: BorderSide.none,
                           ),
-                          prefixIcon: Icon(Icons.email, color: Colors.grey),
+                          prefixIcon: const Icon(Icons.email, color: Colors.grey),
                         ),
                       ),
-                      SizedBox(height: 30),
-                      Center(
+                      const SizedBox(height: 30),
+                      const Center(
                         child: Text(
                           "Enter the email associated with your account and we'll send an email with instructions to reset your password.",
                           style: TextStyle(
@@ -220,7 +220,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       ElevatedButton(
                         onPressed: () => reset(),
                         style: ElevatedButton.styleFrom(
@@ -231,7 +231,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         ),
                         child: Ink(
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               colors: [Color.fromARGB(210, 5, 242, 155), Color.fromARGB(255, 4, 140, 126)],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
@@ -240,9 +240,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           ),
                           child: Container(
                             alignment: Alignment.center,
-                            constraints: BoxConstraints(minHeight: 50), // Set a minimum height for the button
-                            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                            child: Text(
+                            constraints: const BoxConstraints(minHeight: 50), // Set a minimum height for the button
+                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                            child: const Text(
                               "Reset Password",
                               style: TextStyle(
                                 fontSize: 18,

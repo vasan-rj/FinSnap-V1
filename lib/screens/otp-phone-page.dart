@@ -23,7 +23,7 @@ class _otpPageState extends State<otpPage> {
     try{
       await FirebaseAuth.instance.signInWithCredential(credential).then((value)
       {
-        Get.offAll(wrapper());
+        Get.offAll(const wrapper());
       });
       }
 
@@ -47,10 +47,10 @@ class _otpPageState extends State<otpPage> {
           shrinkWrap: true,
           children: [
             const SizedBox(height: 50),
-            Center(child: const Text("OTP Verification",style: TextStyle(fontSize: 30)),),
-            SizedBox(height: 10,),
+            const Center(child: Text("OTP Verification",style: TextStyle(fontSize: 30)),),
+            const SizedBox(height: 10,),
             textcode(),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             verifyotp()
         
           ],
@@ -89,8 +89,8 @@ class _otpPageState extends State<otpPage> {
             
           },
           style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
+          child: const Padding(
+            padding: EdgeInsets.all(16),
             child: Text("Verify OTP"),
           ),
         ),

@@ -32,7 +32,7 @@ class _SignUpState extends State<SignUp> {
       setState(() {
         isLoading = false;
       });
-      Get.offAll(wrapper());
+      Get.offAll(const wrapper());
     } on FirebaseAuthException catch (e) {
       setState(() {
         isLoading = false;
@@ -50,7 +50,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Signup",
           style: TextStyle(color: Colors.white),
         ),
@@ -64,7 +64,7 @@ class _SignUpState extends State<SignUp> {
           ),
           child: IntrinsicHeight(
             child: isLoading
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -73,54 +73,54 @@ class _SignUpState extends State<SignUp> {
                       //  SizedBox(height:10),
                       TextField(
                         controller: email,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           hintText: "Enter Mail",
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: const TextStyle(color: Colors.grey),
                           filled: true,
-                          fillColor: Color.fromARGB(190, 6, 34, 43),
+                          fillColor: const Color.fromARGB(190, 6, 34, 43),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
                             borderSide: BorderSide.none,
                           ),
-                          prefixIcon: Icon(Icons.email, color: Colors.grey),
+                          prefixIcon: const Icon(Icons.email, color: Colors.grey),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       TextField(
                         controller: password,
                         obscureText: true,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           hintText: "Enter Password",
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: const TextStyle(color: Colors.grey),
                           filled: true,
-                          fillColor: Color.fromARGB(190, 6, 34, 43),
+                          fillColor: const Color.fromARGB(190, 6, 34, 43),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
                             borderSide: BorderSide.none,
                           ),
-                          prefixIcon: Icon(Icons.lock, color: Colors.grey),
+                          prefixIcon: const Icon(Icons.lock, color: Colors.grey),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       TextField(
                         controller: confirmPassword,
                         obscureText: true,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           hintText: "Confirm Password",
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: const TextStyle(color: Colors.grey),
                           filled: true,
-                          fillColor: Color.fromARGB(190, 6, 34, 43),
+                          fillColor: const Color.fromARGB(190, 6, 34, 43),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
                             borderSide: BorderSide.none,
                           ),
-                          prefixIcon: Icon(Icons.lock, color: Colors.grey),
+                          prefixIcon: const Icon(Icons.lock, color: Colors.grey),
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       ElevatedButton(
                         onPressed: () => signUpFunc(),
                         style: ElevatedButton.styleFrom(
@@ -131,7 +131,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         child: Ink(
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               colors: [Color.fromARGB(210, 5, 242, 155), Color.fromARGB(255, 4, 140, 126)],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
@@ -140,9 +140,9 @@ class _SignUpState extends State<SignUp> {
                           ),
                           child: Container(
                             alignment: Alignment.center,
-                            constraints: BoxConstraints(minHeight: 50), // Set a minimum height for the button
-                            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                            child: Text(
+                            constraints: const BoxConstraints(minHeight: 50), // Set a minimum height for the button
+                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                            child: const Text(
                               "Sign Up",
                               style: TextStyle(
                                 fontSize: 18,

@@ -395,7 +395,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return is_loading
-        ? Center(child: CircularProgressIndicator())
+        ? const Center(child: CircularProgressIndicator())
         : Scaffold(
             backgroundColor: Colors.black87,
             body: Center(
@@ -404,7 +404,7 @@ class _LoginState extends State<Login> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Sign In",
                       style: TextStyle(
                         fontSize: 32,
@@ -412,16 +412,16 @@ class _LoginState extends State<Login> {
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     TextField(
                       autocorrect: true,
                       
                       controller: email,
-                      style: TextStyle(color: Colors.white,backgroundColor: Colors.black45),
+                      style: const TextStyle(color: Colors.white,backgroundColor: Colors.black45),
                       
                       decoration: InputDecoration(
                         hintText: "Enter Email",
-                        hintStyle: TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.grey),
                         filled: true,
                         fillColor: Colors.black12,
                         
@@ -432,33 +432,33 @@ class _LoginState extends State<Login> {
                           
                           
                         ),
-                        prefixIcon: Icon(Icons.email, color: Colors.grey),
+                        prefixIcon: const Icon(Icons.email, color: Colors.grey),
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextField(
                       controller: password,
                       obscureText: true,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         hintText: "Enter Password",
-                        hintStyle: TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.grey),
                         filled: true,
                         fillColor: Colors.black12,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           borderSide: BorderSide.none,
                         ),
-                        prefixIcon: Icon(Icons.lock, color: Colors.grey),
+                        prefixIcon: const Icon(Icons.lock, color: Colors.grey),
                         suffixIcon: IconButton(
-                          icon: Icon(Icons.visibility, color: Colors.grey),
+                          icon: const Icon(Icons.visibility, color: Colors.grey),
                           onPressed: () {
                             // Implement visibility toggle
                           },
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -471,22 +471,22 @@ class _LoginState extends State<Login> {
                               },
                               // activeColor: Colors.blue,
                             ),
-                            Text(
+                            const Text(
                               "Remember me",
                               style: TextStyle(color: Colors.white),
                             ),
                           ],
                         ),
                         TextButton(
-                          onPressed: () => Get.to(ForgetPassword()),
-                          child: Text(
+                          onPressed: () => Get.to(const ForgetPassword()),
+                          child: const Text(
                             "Forgot password?",
                             style: TextStyle(color:Color.fromARGB(210, 5, 242, 155),)
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
   onPressed: () => signIn(),
   style: ElevatedButton.styleFrom(
@@ -497,7 +497,7 @@ class _LoginState extends State<Login> {
   ),
   child: Ink(
     decoration: BoxDecoration(
-      gradient: LinearGradient(
+      gradient: const LinearGradient(
         colors: [  Color.fromARGB(210, 5, 242, 155), Colors.teal],
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
@@ -506,9 +506,9 @@ class _LoginState extends State<Login> {
     ),
     child: Container(
       alignment: Alignment.center,
-      constraints: BoxConstraints(minHeight: 50), // Set a minimum height for the button
-      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-      child: Text(
+      constraints: const BoxConstraints(minHeight: 50), // Set a minimum height for the button
+      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+      child: const Text(
         "Sign In",
         style: TextStyle(
           fontSize: 18,
@@ -552,12 +552,12 @@ class _LoginState extends State<Login> {
                     //     ),
                     //   ),
                     // ),
-                    SizedBox(height: 25),
-                    Text(
+                    const SizedBox(height: 25),
+                    const Text(
                       "Or Sign In with",
                       style: TextStyle(color: Colors.grey),
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -575,11 +575,11 @@ class _LoginState extends State<Login> {
                         // ),
                         ElevatedButton.icon(
                           onPressed: () => google_sign_in(),
-                          icon: Icon(Icons.g_translate, color: Colors.white),
-                          label: Container(child: Text("Google",style: TextStyle(color: Colors.white),)),
+                          icon: const Icon(Icons.g_translate, color: Colors.white),
+                          label: Container(child: const Text("Google",style: TextStyle(color: Colors.white),)),
                           style: ElevatedButton.styleFrom(
                             // primary: Colors.red,
-                            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -587,17 +587,17 @@ class _LoginState extends State<Login> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "Don’t have an account? ",
                           style: TextStyle(color: Colors.grey),
                         ),
                         TextButton(
-                          onPressed: () => Get.to(SignUp()),
-                          child: Text(
+                          onPressed: () => Get.to(const SignUp()),
+                          child: const Text(
                             "Sign Up",
                             style: TextStyle(color: Color.fromARGB(210, 5, 242, 155)),
                           ),
