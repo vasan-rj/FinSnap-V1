@@ -1,6 +1,9 @@
 
 // // , how to i render the ui from the response on ai and the user prompt in the screen
 
+import 'dart:convert';
+
+import 'package:finsnap/models/custom_chat_quiz_model.dart';
 import 'package:finsnap/widgets/chat_interface.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:finsnap/screens/remainder.dart';
 import 'package:finsnap/widgets/chatbot-sidebar.dart';
+import 'package:finsnap/models/custom_chat_quiz_model.dart';
 
 
 class Homepage extends StatefulWidget {
@@ -22,7 +26,7 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   // bottom app navigation bar
   int _selectedIndex = 0;
-
+   List<CustomChatMessage> customChatMessages = [];
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Home Page', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
     Text('AI Finance Assistant', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
@@ -68,12 +72,41 @@ class _HomepageState extends State<Homepage> {
           topP: 0.85,
           topK: 20,
           maxOutputTokens: 250,
+          responseMimeType: 'application/json'
+        
+          // responseSchema:
+        
+
         ),
         systemInstruction: Content.system(
           """
           You are a Personal Financial Assistant for the user, your goal is to gather relevant financial information from the user to provide personalized financial recommendations and help them achieve their financial goals. 
-          Do not make assumptions, ask clarifying questions if not enough information is available. 
-          Ask only one question at a time to the user.
+          Do not make assumptions, ask clarifying questions if not enough information is available , only ask important and relavent and important questions. 
+          if you are replying then follow type 1 response Schema , and if you are asking question then follow type 2 response Schema.
+          
+          type 1 response schema:
+
+              {
+                type: "reply",
+                content: {
+                  "message": <your reply here>
+              }
+
+
+          type 2 response schema:
+
+              {
+                type: "question",
+                content: {
+                  "message": <your question here>,
+                  "options": [
+                    <option 1>,
+                    <option 2>,
+                    <option 3>,
+                    etc...
+                  ]
+                }
+              }
           """
 
         // '''
@@ -90,18 +123,18 @@ class _HomepageState extends State<Homepage> {
   }
 
   structuredPrompt(String userPrompt) {
-    final userMessage = ChatMessage(
+    final userMessage = CustomChatMessage(
       user: ChatUser(id: user?.uid ?? '', firstName: user?.email ?? 'User'),
-      text: userPrompt,
+      message: userPrompt,
       createdAt: DateTime.now(),
     );
     setState(() {
-      chatMessages.add(userMessage);
+      customChatMessages.add(userMessage);
     });
-    return chatMessages.map((message) => "${message.user.firstName}: ${message.text}").join('\n');
+    return customChatMessages.map((userMessage) => "${userMessage.user.firstName}: ${userMessage.message}").join('\n');
   }
 
-  get_text_gemini(String prompt) async {
+  Future<void> get_text_gemini(String prompt) async {
     setState(() {
       isLoading = true;
     });
@@ -113,37 +146,43 @@ class _HomepageState extends State<Homepage> {
         final content = [Content.text(structuredPrompt(prompt))];
         final response = await model.generateContent(content);
 
-        final aiMessage = ChatMessage(
+        // Parsed response from AI
+       final parsedResponse = jsonDecode(response.text.toString());
+        final responseType = parsedResponse['type'];
+        final responseContent = parsedResponse['content'];
+
+        final aiMessage = CustomChatMessage(
           user: ChatUser(id: 'ai', firstName: 'AI'),
-          text: response.text.toString(),
+          message: responseContent['message'],
           createdAt: DateTime.now(),
+          options: responseType == 'question' ? List<String>.from(responseContent['options']) : null,
         );
 
         setState(() {
-          chatMessages.add(aiMessage);
+          customChatMessages.add(aiMessage);
           isLoading = false;
         });
       } else {
-        final errorMessage = ChatMessage(
+        final errorMessage = CustomChatMessage(
           user: ChatUser(id: 'ai', firstName: 'AI'),
-          text: "Error: Could not initialize model",
+          message: "Error: Could not initialize model",
           createdAt: DateTime.now(),
         );
 
         setState(() {
-          chatMessages.add(errorMessage);
+          customChatMessages.add(errorMessage);
           isLoading = false;
         });
       }
     } catch (e) {
-      final errorMessage = ChatMessage(
+      final errorMessage = CustomChatMessage(
         user: ChatUser(id: 'ai', firstName: 'AI'),
-        text: 'Error: ${e.toString()}',
+        message: 'Error: ${e.toString()}',
         createdAt: DateTime.now(),
       );
 
       setState(() {
-        chatMessages.add(errorMessage);
+        customChatMessages.add(errorMessage);
         isLoading = false;
       });
     }
@@ -169,11 +208,11 @@ class _HomepageState extends State<Homepage> {
 
   @override
   void initState() {
-    if (chatMessages.length == 1) {
+    if (customChatMessages.length == 1) {
       try {
         super.initState();
         initializeModel();
-        final initialPrompt = chatMessages[0].text;
+        final initialPrompt = customChatMessages[0].message;
         final finalPrompt = "I wanna buy $initialPrompt. Give a personalized financial advice so that I can decide whether I can buy it or not.";
         get_text_gemini(finalPrompt);
         print("\n*10");
@@ -212,51 +251,28 @@ class _HomepageState extends State<Homepage> {
                   style: const TextStyle(fontSize: 16, color: Colors.white),
                 ),
               const SizedBox(height: 20),
+              
               // Text(
               //   'What you gonna Buy?',
               //   style: TextStyle(fontSize: 16, color: Colors.white),
               // ),
-              // SizedBox(height: 20),
-              const SizedBox(height: 20),
-              ChatWidget(
-                 currentUser: ChatUser(id: user?.uid ?? ''),
-                chatMessages: chatMessages,
-                onSend: (text) => get_text_gemini(text),
-                isLoading: isLoading,
-                
+              Expanded(
+                child: ChatWidget(
+                   currentUser: ChatUser(id: user?.uid ?? ''),
+                  customChatMessages: customChatMessages,
+                  onSend: (message) {
+                    if (message.options == null) {
+                      get_text_gemini(message.message);
+                    }
+                    setState(() {
+                      customChatMessages.add(message);
+                    });
+                  },
+                  isLoading: isLoading,
+                  
+                ),
               )
-              // if (isLoading)
-              //   const CircularProgressIndicator()
-              // else
-              //   SizedBox(
-              //     height: 500,
-              //     child: DashChat(
-              //       currentUser: ChatUser(id: user?.uid ?? '',),
-              //       messages: chatMessages.reversed.toList(),
-              //       messageOptions: const MessageOptions(
-              //         // showOtherUsersAvatar: false,
-              //         currentUserContainerColor:Color.fromARGB(210, 5, 242, 155),
-              //         currentUserTextColor: Colors.white,
-              //         containerColor: Color(0xFF333333),
-              //         textColor: Colors.white,
-              //       ),
-              //       onSend: (ChatMessage message) {
-              //         get_text_gemini(message.text);
-              //       },
-              //       inputOptions: InputOptions(
-              //         inputDecoration: InputDecoration(
-              //           hintText: "Type your message here...",
-              //           filled: true,
-              //           fillColor: const Color(0xFF2C2C2C),
-              //           border: OutlineInputBorder(
-              //             borderRadius: BorderRadius.circular(10),
-              //             borderSide: BorderSide.none,
-              //           ),
-              //           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
+
             ],
           ),
         ),
@@ -292,3 +308,5 @@ class _HomepageState extends State<Homepage> {
     );
   }
 }
+
+
