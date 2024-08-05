@@ -4,6 +4,7 @@ import 'package:finsnap/widgets/custom_chat_bubble.dart';
 import 'package:flutter/material.dart';
 
 
+
 class ChatWidget extends StatelessWidget {
   final ChatUser currentUser;
   final List<CustomChatMessage> customChatMessages;
@@ -28,41 +29,97 @@ class ChatWidget extends StatelessWidget {
 // class _ChatWidgetState extends State<ChatWidget> {
 //   final TextEditingController _controller = TextEditingController();
 
+
+
   @override
  
  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: DashChat(
-            currentUser: currentUser,
-            messages: customChatMessages.map((m) => ChatMessage(
-              user: m.user,
-              text: m.message,
-              createdAt: m.createdAt,
+  
+  final ScrollController _scrollController = ScrollController();
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    });
+  }
+
+  
+
+
+
+  //   return Column(
+  //     children: [
+  //       Expanded(
+  //         child: DashChat(
+  //           currentUser: currentUser,
+  //           messages: customChatMessages.map((m) => ChatMessage(
+  //             user: m.user,
+  //             text: m.message,
+  //             createdAt: m.createdAt,
               
-            )).toList().reversed.toList(),
-            onSend: (ChatMessage message) {
-              onSend(
-                CustomChatMessage(
-                  user: message.user,
-                  message: message.text ?? '',
-                  createdAt: message.createdAt,
+  //           )).toList().reversed.toList(),
+  //           onSend: (ChatMessage message) {
+  //             onSend(
+  //               CustomChatMessage(
+  //                 user: message.user,
+  //                 message: message.text ?? '',
+  //                 createdAt: message.createdAt,
                   
-                  // options: message.options,
+  //                 // options: message.options,
                   
-                ),
-              );
-            },
-          ),
-        ),
-        if (isLoading)
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CircularProgressIndicator(),
-          ),
-      ],
-    );
+  //               ),
+  //             );
+  //           },
+  //         ),
+  //       ),
+  //       if (isLoading)
+  //         Padding(
+  //           padding: const EdgeInsets.all(8.0),
+  //           child: CircularProgressIndicator(),
+  //         ),
+  //     ],
+  //   );
+  // }
+
+  return isLoading
+        ? Center(child: CircularProgressIndicator(
+          color: const Color.fromARGB(210, 5, 242, 155),
+        ))
+        : SizedBox(
+            height: 500,
+            child: ListView.builder(
+               controller: _scrollController,
+              reverse: false,
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              itemCount: customChatMessages.length,
+              itemBuilder: (context, index) {
+                final message = customChatMessages[index];
+                return CustomChatBubble(
+                  message: message,
+                  onOptionSelected: (option) {
+                   
+                    final userMessage = CustomChatMessage(
+                      user: currentUser,
+                      message: option,
+                      createdAt: DateTime.now(),
+                    );
+                    // onSend(userMessage);
+                    customChatMessages.add(userMessage);
+
+                    onSend(userMessage);
+                  },
+                );
+              },
+              
+            ),
+
+          );
+           
+           
   }
 }
 
