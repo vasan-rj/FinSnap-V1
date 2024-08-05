@@ -3,90 +3,68 @@ import 'package:finsnap/models/custom_chat_quiz_model.dart';
 import 'package:finsnap/widgets/custom_chat_bubble.dart';
 import 'package:flutter/material.dart';
 
-class ChatWidget extends StatefulWidget {
+
+class ChatWidget extends StatelessWidget {
   final ChatUser currentUser;
   final List<CustomChatMessage> customChatMessages;
   final Function(CustomChatMessage) onSend;
   final bool isLoading;
+  // final List<String> options_x;
+
 
   ChatWidget({
     required this.currentUser,
     required this.customChatMessages,
     required this.onSend,
     this.isLoading = false,
+    // required this.options_x,
+    
   });
 
-  @override
-  _ChatWidgetState createState() => _ChatWidgetState();
-}
+//   @override
+//   _ChatWidgetState createState() => _ChatWidgetState();
+// }
 
-class _ChatWidgetState extends State<ChatWidget> {
-  final TextEditingController _controller = TextEditingController();
+// class _ChatWidgetState extends State<ChatWidget> {
+//   final TextEditingController _controller = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+ 
+ Widget build(BuildContext context) {
     return Column(
       children: [
         Expanded(
-          child: ListView.builder(
-            reverse: true,
-            itemCount: widget.customChatMessages.length,
-            itemBuilder: (context, index) {
-              final message = widget.customChatMessages[index];
-              return CustomChatBubble(
-                message: message,
-                onOptionSelected: (option) {
-                  final userMessage = CustomChatMessage(
-                    user: widget.currentUser,
-                    message: option,
-                    createdAt: DateTime.now(),
-                  );
-                  widget.onSend(userMessage);
-                },
+          child: DashChat(
+            currentUser: currentUser,
+            messages: customChatMessages.map((m) => ChatMessage(
+              user: m.user,
+              text: m.message,
+              createdAt: m.createdAt,
+              
+            )).toList().reversed.toList(),
+            onSend: (ChatMessage message) {
+              onSend(
+                CustomChatMessage(
+                  user: message.user,
+                  message: message.text ?? '',
+                  createdAt: message.createdAt,
+                  
+                  // options: message.options,
+                  
+                ),
               );
             },
           ),
         ),
-        if (widget.isLoading)
-          CircularProgressIndicator()
-        else
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: _controller,
-                  decoration: InputDecoration(
-                    hintText: 'Type your message',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                ),
-              ),
-              IconButton(
-                icon: Icon(Icons.send),
-                onPressed: () {
-                  if (_controller.text.isNotEmpty) {
-                    final userMessage = CustomChatMessage(
-                      user: widget.currentUser,
-                      message: _controller.text,
-                      createdAt: DateTime.now(),
-                    );
-                    widget.onSend(userMessage);
-                    _controller.clear();
-                  }
-                },
-              ),
-            ],
+        if (isLoading)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircularProgressIndicator(),
           ),
       ],
     );
   }
 }
-
-
-
-
 
 
 
