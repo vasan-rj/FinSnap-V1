@@ -10,6 +10,7 @@ class ChatWidget extends StatelessWidget {
   final List<CustomChatMessage> customChatMessages;
   final Function(CustomChatMessage) onSend;
   final bool isLoading;
+  final ScrollController scrollController;
   // final List<String> options_x;
 
 
@@ -17,7 +18,8 @@ class ChatWidget extends StatelessWidget {
     required this.currentUser,
     required this.customChatMessages,
     required this.onSend,
-    this.isLoading = false,
+    this.isLoading = false, 
+    required this.scrollController,
     // required this.options_x,
     
   });
@@ -39,8 +41,8 @@ class ChatWidget extends StatelessWidget {
 
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
+      scrollController.animateTo(
+        scrollController.position.physics.maxFlingVelocity,
         duration: Duration(milliseconds: 300),
         curve: Curves.easeOut,
       );
@@ -89,35 +91,47 @@ class ChatWidget extends StatelessWidget {
         ? Center(child: CircularProgressIndicator(
           color: const Color.fromARGB(210, 5, 242, 155),
         ))
-        : SizedBox(
-            height: 500,
-            child: ListView.builder(
-               controller: _scrollController,
-              reverse: false,
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-              itemCount: customChatMessages.length,
-              itemBuilder: (context, index) {
-                final message = customChatMessages[index];
-                return CustomChatBubble(
-                  message: message,
-                  onOptionSelected: (option) {
-                   
-                    final userMessage = CustomChatMessage(
-                      user: currentUser,
-                      message: option,
-                      createdAt: DateTime.now(),
-                    );
-                    // onSend(userMessage);
-                    customChatMessages.add(userMessage);
-
-                    onSend(userMessage);
-                  },
-                );
-              },
+        : SingleChildScrollView(
+          child: Column(
+            children: [
+              // ElevatedButton(
+              //     child:Text("priya"),
+              //     onPressed:(){_scrollToBottom();},
+              //   ),
+              SizedBox(
+                  height: 450,
+                  child: ListView.builder(
+                    
+                     controller: scrollController,
+                    reverse: false,
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    itemCount: customChatMessages.length,
+                    itemBuilder: (context, index) {
+                      final message = customChatMessages[index];
+                      return CustomChatBubble(
+                        message: message,
+                        onOptionSelected: (option) {
+                         
+                          final userMessage = CustomChatMessage(
+                            user: currentUser,
+                            message: option,
+                            createdAt: DateTime.now(),
+                          );
+                          // onSend(userMessage);
+                          customChatMessages.add(userMessage);
               
-            ),
-
-          );
+                          onSend(userMessage);
+                        },
+                      );
+                    },
+                    
+                  ),
+              
+                ),
+                
+            ],
+          ),
+        );
            
            
   }
