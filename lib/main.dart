@@ -1,4 +1,5 @@
 // import 'package:finsnap/wrapper.dart';
+import 'package:finsnap/screens/ai-features/health_score.dart';
 import 'package:finsnap/screens/testing.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -66,6 +67,11 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       theme: TAppTheme.darkTheme,
       home:fingerprintPage(),
+      getPages: [
+      GetPage(name: '/healthscore', page: () => HealthScorePage()),
+      // GetPage(name: '/toAccount', page: () => ToAccountPage()),
+      // GetPage(name: '/bankToBank', page: () => BankToBankPage()),
+    ],
       // routes: {
       //   RemainderPage.route : (context) =>const RemainderPage(),
       // },

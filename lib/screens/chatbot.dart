@@ -53,7 +53,7 @@ class _HomepageState extends State<Homepage> {
       _selectedIndex = index;
 
       if (_selectedIndex == 0) {
-        Get.to(() =>  IndexPage());
+        Get.to(() => IndexPage());
       } else if (_selectedIndex == 1) {
         Get.to(() => const Homepage());
       } else if (_selectedIndex == 2) {
@@ -215,16 +215,7 @@ class _HomepageState extends State<Homepage> {
       Get.snackbar("Error", "Prompt or response is empty.");
     }
   }
-// final errorMessage = CustomChatMessage(
-//         user: ChatUser(id: 'ai', firstName: 'AI'),
-//         message: 'Error: ${e.toString()}',
-//         createdAt: DateTime.now(),
-//       );
 
-//       setState(() {
-//         customChatMessages.add(errorMessage);
-//         isLoading = false;
-//       });
   @override
   void initState() {
     super.initState();
@@ -254,7 +245,11 @@ class _HomepageState extends State<Homepage> {
         title: Center(
           child: SizedBox(
             child: Text('AI Finance Assistant',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: const Color.fromARGB(210, 5, 242, 155),)),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: const Color.fromARGB(210, 5, 242, 155),
+                )),
           ),
         ),
         backgroundColor: Colors.black87,
@@ -304,16 +299,14 @@ class _HomepageState extends State<Homepage> {
                   ),
                   // const SizedBox(height:2),
                   ElevatedButton(
-                      onPressed: () {
-                        _scrollToBottom();
-                      },
-                      child: Icon(
-                        Icons.arrow_downward_outlined,
-                        color: Color.fromARGB(210, 5, 242, 155),
-                      
-                      ),
-
-                      ),
+                    onPressed: () {
+                      _scrollToBottom();
+                    },
+                    child: Icon(
+                      Icons.arrow_downward_outlined,
+                      color: Color.fromARGB(210, 5, 242, 155),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(

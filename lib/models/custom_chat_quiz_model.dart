@@ -21,8 +21,6 @@ class CustomChatMessage {
   final String message;
   final DateTime createdAt;
   final List<String>? options; 
-  
-  
 
   CustomChatMessage({
      required this.user,

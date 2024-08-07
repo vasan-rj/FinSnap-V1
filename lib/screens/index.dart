@@ -14,7 +14,6 @@
 //   }
 // }
 
-
 import 'package:finsnap/screens/chatbot.dart';
 import 'package:finsnap/screens/remainder.dart';
 import 'package:finsnap/widgets/chatbot/chatbot-sidebar.dart';
@@ -24,19 +23,16 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:finsnap/widgets/indexpage/index_ui_widgets.dart';
 
 class IndexPage extends StatelessWidget {
-
   void _onItemTapped(int index) {
-  
-      _selectedIndex = index;
+    _selectedIndex = index;
 
-      if (_selectedIndex == 0) {
-        Get.to(() =>  IndexPage());
-      } else if (_selectedIndex == 1) {
-        Get.to(() => const Homepage());
-      } else if (_selectedIndex == 2) {
-        Get.to(() => const RemainderPage());
-      }
-    
+    if (_selectedIndex == 0) {
+      Get.to(() => IndexPage());
+    } else if (_selectedIndex == 1) {
+      Get.to(() => const Homepage());
+    } else if (_selectedIndex == 2) {
+      Get.to(() => const RemainderPage());
+    }
   }
 
   int _selectedIndex = 0;
@@ -57,12 +53,16 @@ class IndexPage extends StatelessWidget {
         title: Center(
           child: SizedBox(
             child: Text(' FinSnap 💸',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: const Color.fromARGB(210, 5, 242, 155),)),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: const Color.fromARGB(210, 5, 242, 155),
+                )),
           ),
         ),
         backgroundColor: Colors.black87,
       ),
-       drawer: AppDrawer(),
+      drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -93,8 +93,6 @@ class IndexPage extends StatelessWidget {
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
-
-
 
   Widget _buildSectionTitle(String title) {
     return Text(
@@ -138,9 +136,21 @@ class IndexPage extends StatelessWidget {
 
   Widget _buildTransferOptions() {
     final List<Map<String, dynamic>> options = [
-      {'icon': Icons.credit_card, 'label': 'Card to card'},
-      {'icon': Icons.account_balance_wallet, 'label': 'To account'},
-      {'icon': Icons.account_balance, 'label': 'Bank to bank'},
+      {
+        'icon': Icons.credit_card,
+        'label': 'Card to card',
+        'route': '/healthscore'
+      },
+      {
+        'icon': Icons.account_balance_wallet,
+        'label': 'To account',
+        'route': '/healthscore'
+      },
+      {
+        'icon': Icons.account_balance,
+        'label': 'Bank to bank',
+        'route': '/healthscore'
+      },
     ];
 
     return Row(
@@ -156,13 +166,25 @@ class IndexPage extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Icon(option['icon'], color: Colors.white),
-                SizedBox(height: 8),
-                Text(
-                  option['label'],
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white),
-                ),
+                
+                // SizedBox(height: 8),
+                TextButton(
+                  onPressed: () {
+                    print("clikeee");
+                    Get.toNamed(option['route']);
+                  },
+                  child: Column(
+                    children: [
+                      Icon(option['icon'], color: Colors.white),
+                       SizedBox(height: 8),
+                      Text(
+                        option['label'],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
@@ -240,7 +262,7 @@ class IndexPage extends StatelessWidget {
     );
   }
 
-// 
+//
 //  bottomNavigationBar: BottomNavigationBar(
 //         items: const <BottomNavigationBarItem>[
 //           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -255,23 +277,21 @@ class IndexPage extends StatelessWidget {
 //         unselectedItemColor: Colors.grey,
 //       ),
 
-
-
-// 
+//
   Widget _buildBottomNavigationBar() {
     return BottomNavigationBar(
       backgroundColor: Color(0xFF1F1F1F),
-       items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.assistant), label: 'AI Assistant'),
-          BottomNavigationBarItem(icon: Icon(Icons.alarm), label: 'Remainder'),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        // backgroundColor: Colors.black87,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.assistant), label: 'AI Assistant'),
+        BottomNavigationBarItem(icon: Icon(Icons.alarm), label: 'Remainder'),
+      ],
+      currentIndex: _selectedIndex,
+      onTap: _onItemTapped,
+      // backgroundColor: Colors.black87,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.grey,
     );
   }
 }
