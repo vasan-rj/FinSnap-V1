@@ -1,7 +1,7 @@
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:finsnap/models/custom_chat_quiz_model.dart';
-import 'package:finsnap/widgets/chat_interface.dart';
-import 'package:finsnap/widgets/chatbot-sidebar.dart';
+import 'package:finsnap/widgets/chatbot/chat_interface.dart';
+import 'package:finsnap/widgets/chatbot/chatbot-sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,7 +21,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
   List<CustomChatMessage> customChatMessages = [];
   final ScrollController _scrollController = ScrollController();
   static const List<Widget> _widgetOptions = <Widget>[
@@ -253,7 +253,8 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(
         title: Center(
           child: SizedBox(
-            child: _widgetOptions.elementAt(_selectedIndex),
+            child: Text('AI Finance Assistant',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: const Color.fromARGB(210, 5, 242, 155),)),
           ),
         ),
         backgroundColor: Colors.black87,

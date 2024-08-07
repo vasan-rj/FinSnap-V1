@@ -17,9 +17,11 @@
 
 import 'package:finsnap/screens/chatbot.dart';
 import 'package:finsnap/screens/remainder.dart';
+import 'package:finsnap/widgets/chatbot/chatbot-sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:finsnap/widgets/indexpage/index_ui_widgets.dart';
 
 class IndexPage extends StatelessWidget {
 
@@ -52,22 +54,22 @@ class IndexPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFF121212),
       appBar: AppBar(
-        backgroundColor: Color(0xFF1F1F1F),
-        title: Text('Payments'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
+        title: Center(
+          child: SizedBox(
+            child: Text(' FinSnap 💸',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: const Color.fromARGB(210, 5, 242, 155),)),
           ),
-        ],
+        ),
+        backgroundColor: Colors.black87,
       ),
+       drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildSearchBar(),
+              BuildSearchbar(),
               SizedBox(height: 16),
               _buildSectionTitle('Favorites'),
               SizedBox(height: 8),
@@ -92,23 +94,7 @@ class IndexPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSearchBar() {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: 'Search ATMs, Payments, Fines',
-        hintStyle: TextStyle(color: Colors.white54),
-        prefixIcon: Icon(Icons.search, color: Colors.white54),
-        filled: true,
-        fillColor: Color(0xFF1F1F1F),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide.none,
-        ),
-        contentPadding: EdgeInsets.symmetric(horizontal: 20),
-      ),
-      style: TextStyle(color: Colors.white),
-    );
-  }
+
 
   Widget _buildSectionTitle(String title) {
     return Text(

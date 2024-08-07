@@ -1,5 +1,7 @@
 // uid = User mail address
 
+import 'package:finsnap/screens/chatbot.dart';
+import 'package:finsnap/screens/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +35,7 @@ import 'package:timezone/data/latest.dart' as tz;
     });
   }
 
-
+ 
 class RemainderPage extends StatefulWidget {
   const RemainderPage({super.key});
   static const route='/remainder';
@@ -44,6 +46,7 @@ class RemainderPage extends StatefulWidget {
 
 class _RemainderPageState extends State<RemainderPage> {
    final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+   int _selectedIndex = 2;
   String dropdownValue = 'Option 1';
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
@@ -51,6 +54,22 @@ class _RemainderPageState extends State<RemainderPage> {
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
   final user = FirebaseAuth.instance.currentUser;
+
+
+  void _onItemTapped(int index) {
+  
+      _selectedIndex = index;
+
+      if (_selectedIndex == 0) {
+        Get.to(() =>  IndexPage());
+      } else if (_selectedIndex == 1) {
+        Get.to(() => const Homepage());
+      } else if (_selectedIndex == 2) {
+        Get.to(() => const RemainderPage());
+      }
+    
+  }
+
 
 // 
   late final db = FirebaseFirestore.instance
@@ -588,7 +607,7 @@ class _RemainderPageState extends State<RemainderPage> {
       appBar: AppBar(
         title: const Text(
           "Custom Remainder",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25,color: const Color.fromARGB(210, 5, 242, 155),),
         ),
         backgroundColor: Colors.black87,
         elevation: 0,
@@ -602,7 +621,7 @@ class _RemainderPageState extends State<RemainderPage> {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(210, 5, 242, 155),
+                color: Colors.grey[200],
               ),
               textAlign: TextAlign.left,
             ),
@@ -692,7 +711,7 @@ class _RemainderPageState extends State<RemainderPage> {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(179, 5, 242, 155),
+                color: Colors.grey,
               ),
               textAlign: TextAlign.left,
             ),
@@ -783,6 +802,20 @@ class _RemainderPageState extends State<RemainderPage> {
 
         ],
       ),
+       bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.assistant), label: 'AI Assistant'),
+          BottomNavigationBarItem(icon: Icon(Icons.alarm), label: 'Remainder'),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        backgroundColor: Colors.black87,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+      ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: createDialogboxNotification,
         child: const Icon(

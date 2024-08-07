@@ -1,6 +1,6 @@
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:finsnap/models/custom_chat_quiz_model.dart';
-import 'package:finsnap/widgets/custom_chat_bubble.dart';
+import 'package:finsnap/widgets/chatbot/custom_chat_bubble.dart';
 import 'package:flutter/material.dart';
 
 
