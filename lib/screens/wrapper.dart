@@ -1,3 +1,4 @@
+import 'package:finsnap/screens/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:finsnap/screens/chatbot.dart';
@@ -28,7 +29,7 @@ class _wrapperState extends State<wrapper> {
             {
               // bool hasPhone =snapshot.data!.phoneNumber !=null;
 
-                return const Homepage();
+                return  IndexPage();
               
               // else
               // {

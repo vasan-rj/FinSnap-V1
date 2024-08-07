@@ -11,6 +11,7 @@ import 'dart:convert';
 // import 'chat_interface.dart';
 // import 'chatbot-sidebar.dart';
 import 'remainder.dart';
+import 'package:finsnap/screens/index.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -52,7 +53,7 @@ class _HomepageState extends State<Homepage> {
       _selectedIndex = index;
 
       if (_selectedIndex == 0) {
-        Get.to(() => const Homepage());
+        Get.to(() =>  IndexPage());
       } else if (_selectedIndex == 1) {
         Get.to(() => const Homepage());
       } else if (_selectedIndex == 2) {

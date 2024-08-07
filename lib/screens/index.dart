@@ -1,6 +1,52 @@
+// import 'package:flutter/material.dart';
+
+// class IndexPage extends StatefulWidget {
+//   const IndexPage({super.key});
+
+//   @override
+//   State<IndexPage> createState() => _IndexPageState();
+// }
+
+// class _IndexPageState extends State<IndexPage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Text("hi hello");
+//   }
+// }
+
+
+import 'package:finsnap/screens/chatbot.dart';
+import 'package:finsnap/screens/remainder.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class IndexPage extends StatelessWidget {
+
+  void _onItemTapped(int index) {
+  
+      _selectedIndex = index;
+
+      if (_selectedIndex == 0) {
+        Get.to(() =>  IndexPage());
+      } else if (_selectedIndex == 1) {
+        Get.to(() => const Homepage());
+      } else if (_selectedIndex == 2) {
+        Get.to(() => const RemainderPage());
+      }
+    
+  }
+
+  int _selectedIndex = 0;
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('Home Page',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+    Text('AI Finance Assistant',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+    Text('Custom Remainder',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -208,25 +254,38 @@ class IndexPage extends StatelessWidget {
     );
   }
 
+// 
+//  bottomNavigationBar: BottomNavigationBar(
+//         items: const <BottomNavigationBarItem>[
+//           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+//           BottomNavigationBarItem(
+//               icon: Icon(Icons.assistant), label: 'AI Assistant'),
+//           BottomNavigationBarItem(icon: Icon(Icons.alarm), label: 'Remainder'),
+//         ],
+//         currentIndex: _selectedIndex,
+//         onTap: _onItemTapped,
+//         backgroundColor: Colors.black87,
+//         selectedItemColor: Colors.white,
+//         unselectedItemColor: Colors.grey,
+//       ),
+
+
+
+// 
   Widget _buildBottomNavigationBar() {
     return BottomNavigationBar(
       backgroundColor: Color(0xFF1F1F1F),
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home, color: Colors.white),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.message, color: Colors.white),
-          label: 'Messages',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person, color: Colors.white),
-          label: 'Profile',
-        ),
-      ],
-      selectedItemColor: Color(0xFF05F29B),
-      unselectedItemColor: Colors.white54,
+       items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.assistant), label: 'AI Assistant'),
+          BottomNavigationBarItem(icon: Icon(Icons.alarm), label: 'Remainder'),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        // backgroundColor: Colors.black87,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
     );
   }
 }
