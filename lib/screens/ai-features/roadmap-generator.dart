@@ -1,4 +1,6 @@
-import 'package:finsnap/ai-model-config/health-score-model.dart';
+import 'package:finsnap/data/roadmap_queston.dart';
+import 'package:flutter/material.dart';
+import 'package:finsnap/ai-model-config/road-map-model.dart';
 import 'package:finsnap/data/health_score_quiz_question.dart';
 import 'package:finsnap/screens/index.dart';
 import 'package:flutter/material.dart';
@@ -8,15 +10,15 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:percent_indicator/percent_indicator.dart';
 
-class HealthScorePage extends StatefulWidget {
-  const HealthScorePage({super.key});
+class RoadmapGeneratorClass extends StatefulWidget {
+  const RoadmapGeneratorClass({super.key});
 
   @override
-  State<HealthScorePage> createState() => _HealthScorePageState();
+  State<RoadmapGeneratorClass> createState() => _RoadmapGeneratorClassState();
 }
 
-class _HealthScorePageState extends State<HealthScorePage> {
-  int currentQuestionIndex = 0;
+class _RoadmapGeneratorClassState extends State<RoadmapGeneratorClass> {
+int currentQuestionIndex = 0;
   Map<String, String> userResponses = {};
   bool isLoading = false;
 
@@ -24,7 +26,7 @@ class _HealthScorePageState extends State<HealthScorePage> {
     setState(() {
       userResponses[questions] = option;
       print(userResponses);
-      if (currentQuestionIndex < quizQuestions.length - 1) {
+      if (currentQuestionIndex < roadmapQuestions.length - 1) {
         currentQuestionIndex++;
       } else 
       {
@@ -173,7 +175,7 @@ class _HealthScorePageState extends State<HealthScorePage> {
   }
 
   Future<void> goNext_func() async {
-    if (currentQuestionIndex != quizQuestions.length - 1) {
+    if (currentQuestionIndex != roadmapQuestions.length - 1) {
       setState(() {
         currentQuestionIndex++;
       });
@@ -229,7 +231,7 @@ class _HealthScorePageState extends State<HealthScorePage> {
 
   @override
   Widget build(BuildContext context) {
-    final currentQuestion = quizQuestions[currentQuestionIndex];
+    final currentQuestion = roadmapQuestions[currentQuestionIndex];
     return Scaffold(
       appBar: AppBar(
         title: Center(

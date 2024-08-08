@@ -70,13 +70,13 @@ class IndexPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               BuildSearchbar(),
-              SizedBox(height: 16),
+              SizedBox(height: 20),
               _buildSectionTitle('Favorites'),
               SizedBox(height: 8),
               _buildFavoriteIcons(),
               SizedBox(height: 16),
-              _buildSectionTitle('Transfer options'),
-              SizedBox(height: 8),
+              _buildSectionTitle('AI Features ✨'),
+              SizedBox(height: 16),
               _buildTransferOptions(),
               SizedBox(height: 16),
               _buildSectionTitle('Recent transfers'),
@@ -138,19 +138,19 @@ class IndexPage extends StatelessWidget {
     final List<Map<String, dynamic>> options = [
       {
         'icon': Icons.credit_card,
-        'label': 'Card to card',
+        'label': 'AI Finance Score',
         'route': '/healthscore'
       },
       {
         'icon': Icons.account_balance_wallet,
-        'label': 'To account',
-        'route': '/healthscore'
+        'label': 'AI Custom Roadmap',
+        'route': '/roadmap'
       },
-      {
-        'icon': Icons.account_balance,
-        'label': 'Bank to bank',
-        'route': '/healthscore'
-      },
+      // {
+      //   'icon': Icons.account_balance,
+      //   'label': 'Bank to bank',
+      //   'route': '/healthscore'
+      // },
     ];
 
     return Row(
@@ -175,7 +175,7 @@ class IndexPage extends StatelessWidget {
                   },
                   child: Column(
                     children: [
-                      Icon(option['icon'], color: Colors.white),
+                      Icon(option['icon'], color: const Color.fromARGB(210, 5, 242, 155)),
                        SizedBox(height: 8),
                       Text(
                         option['label'],
