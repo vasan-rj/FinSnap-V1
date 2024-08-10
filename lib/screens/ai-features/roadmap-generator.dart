@@ -46,126 +46,175 @@ int currentQuestionIndex = 0;
     });
   }
 
-  void _showResults(
-      dynamic score, dynamic recommendations, dynamic category_with_marks) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Center(child: Text("Financial Health Score")),
-        content: Container(
-          width: double.maxFinite,
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              Center(
-                child: CircularPercentIndicator(
-                  radius: 60.0,
-                  lineWidth: 10.0,
-                  percent: score * 0.01,
-                  center: Text("${score}%"),
-                  progressColor: Color.fromARGB(128, 5, 242, 155),
-                ),
-              ),
-              SizedBox(height: 20.0),
-              Row(
+//   void _showResults(List<dynamic> phases) {
+//   showDialog(
+//     context: context,
+//     builder: (context) => AlertDialog(
+//       title: Center(child: Text("AI Financial Roadmap")),
+//       content: Container(
+//         width: double.maxFinite,
+//         child: ListView.builder(
+//           shrinkWrap: true,
+//           itemCount: phases.length,
+//           itemBuilder: (context, index) {
+//             return Padding(
+//               padding: const EdgeInsets.symmetric(vertical: 8.0),
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(
+//                     "Phase ${index + 1}: ${phases[index][0]['phasename']}",
+//                     style: TextStyle(
+//                       fontSize: 18,
+//                       fontWeight: FontWeight.bold,
+//                       color: const Color.fromARGB(210, 5, 242, 155),
+//                     ),
+//                   ),
+//                   SizedBox(height: 8),
+//                   Text(
+//                     phases[index][0]['description'],
+//                     style: TextStyle(fontSize: 16),
+//                   ),
+//                   Divider(color: Colors.grey),
+//                 ],
+//               ),
+//             );
+//           },
+//         ),
+//       ),
+//       actions: [
+//         TextButton(
+//           onPressed: () {},
+//           // onPressed: () => _generatePdf(phases), // Call the function to generate the PDF
+//           style: TextButton.styleFrom(
+//             backgroundColor: Color.fromARGB(164, 5, 242, 155),
+//             minimumSize: Size(100, 40),
+//             shape: RoundedRectangleBorder(
+//               borderRadius: BorderRadius.circular(15),
+//             ),
+//           ),
+//           child: Text("Download PDF"),
+//         ),
+//         TextButton(
+//           onPressed: () => Navigator.of(context).pop(),
+//           style: TextButton.styleFrom(
+//             backgroundColor: Color.fromARGB(164, 5, 242, 155),
+//             minimumSize: Size(100, 40),
+//             shape: RoundedRectangleBorder(
+//               borderRadius: BorderRadius.circular(15),
+//             ),
+//           ),
+//           child: Text("OK"),
+//         ),
+//       ],
+//     ),
+//   );
+// }
+
+void _showResults(List<dynamic> phases) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Center(child: Text("AI Financial Roadmap")),
+      content: Container(
+        width: double.maxFinite,
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: phases.length,
+          itemBuilder: (context, index) {
+            var phase = phases[index][0];
+            
+            String? phaseName = phase['phasename'] as String?;
+            String? duration = phase['duration'] as String?;
+            List<dynamic>? topics = phase['topics'] as List<dynamic>?;
+
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Finance Health Score:",
+                    phaseName ?? "Unknown Phase",
                     style: TextStyle(
-                        fontSize: 15,
-                        color: const Color.fromARGB(210, 5, 242, 155),
-                        fontWeight: FontWeight.bold),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(210, 5, 242, 155),
+                    ),
                   ),
+                  SizedBox(height: 8),
                   Text(
-                    " $score/100",
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                    "Duration: ${duration ?? "Unknown"}",
+                    style: TextStyle(fontSize: 16),
                   ),
+                  SizedBox(height: 8),
+                  if (topics != null && topics.isNotEmpty)
+                    ...topics.map((topic) {
+                      String? topicName = topic['topicname'] as String?;
+                      List<dynamic>? concepts = topic['concepts'] as List<dynamic>?;
+
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              topicName ?? "Unknown Topic",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.blueGrey,
+                              ),
+                            ),
+                            SizedBox(height: 6),
+                            if (concepts != null && concepts.isNotEmpty)
+                              ...concepts.map((concept) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(left: 16.0, bottom: 4.0),
+                                  child: Text(
+                                    "- $concept",
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                );
+                              }).toList(),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                  Divider(color: Colors.grey),
                 ],
               ),
-              SizedBox(height: 20.0),
-              Text(
-                "Category Marks:",
-                style: TextStyle(
-                    fontSize: 15,
-                    color: const Color.fromARGB(210, 5, 242, 155),
-                    fontWeight: FontWeight.bold),
-              ),
-              // Text(
-              //   "Category Marks:",
-              // ),
-              SizedBox(height: 10.0),
-              ...category_with_marks.entries.map((entry) {
-                return Text(
-                      "${entry.key} : ${entry.value} marks",
-                    );
-                
-                
-              }).toList(),
-             SizedBox(height: 20.0),
-              Column(
-                children: [
-                  Text(
-                    "Recommendations: ",
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: const Color.fromARGB(210, 5, 242, 155),
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 15,),
-                  Text(
-                    "$recommendations",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                ],
-              ),
-              // Text("Recommendations: $recommendations"),
-            ],
-          ),
+            );
+          },
         ),
-        actions: [
-          // TextButton(
-          //   onPressed: () => Navigator.of(context).pop(),
-          //   child: Text("OK"),
-          // ),
-
-          Row(
-            children: [
-              TextButton(
-                onPressed: () =>Get.to(IndexPage()),
-                style: TextButton.styleFrom(
-                  backgroundColor: Color.fromARGB(164, 5, 242, 155),
-                  // primary: Colors.white,  // Text color
-                  minimumSize: Size(100, 40), // Width and height
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-                child:Icon(Icons.home_filled),
-              ),
-
-              SizedBox(width: 20,),
-              // 
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                style: TextButton.styleFrom(
-                  backgroundColor: Color.fromARGB(164, 5, 242, 155),
-                  // primary: Colors.white,  // Text color
-                  minimumSize: Size(100, 40), // Width and height
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-                child: Text("OK"),
-              ),
-            ],
-          ),
-        ],
       ),
-    );
-  }
+      actions: [
+        TextButton(
+          // onPressed: () => _generatePdf(phases), // Call the function to generate the PDF
+          onPressed: (){},
+          style: TextButton.styleFrom(
+            backgroundColor: Color.fromARGB(164, 5, 242, 155),
+            minimumSize: Size(100, 40),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+          child: Text("Download PDF"),
+        ),
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          style: TextButton.styleFrom(
+            backgroundColor: Color.fromARGB(164, 5, 242, 155),
+            minimumSize: Size(100, 40),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+          child: Text("OK"),
+        ),
+      ],
+    ),
+  );
+}
 
   Future<void> goBack_func() async {
     if (currentQuestionIndex != 0) {
@@ -220,9 +269,7 @@ Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
 
           print("Parsed response: $parsedResponse");
 
-          
-
-            int last_ind=allPhases.length-1;
+            int last_ind=allPhases.length;
 
             // dynamic lastresponse = allPhases[last_ind];
             // String last_response=lastresponse[0]['phasename'];
@@ -243,12 +290,12 @@ Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
             dynamic lastresponse = allPhases.last; // Safely access the last element
             String last_response = lastresponse[0]['phasename'];
             String current_response = parsedResponse['phases'][0]['phasename'];
-            print ("vasan\n");
-            print("${last_response} , \n\n\n\n ${current_response}");
+            // print ("vasan\n");
+            // print("${last_response} , \n\n\n\n ${current_response}");
             if (!isDuplicate(last_response, current_response)) 
             {
-              print("print Priya.......");
-              print(parsedResponse['phases']);
+              // print("print Priya.......");
+              // print(parsedResponse['phases']);
               allPhases.add(parsedResponse['phases']);
             }
             else{
@@ -277,13 +324,16 @@ Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
            if (!morePhases) {
             break;
           }
-          phaseIndex++;
+          setState(() {
+          phaseIndex++;  
+          });
+          
         }
       }
 
       // Combine and use allPhases for the complete roadmap
-      print("All Phases: $allPhases");
-      // _showResults(allPhases);
+      // print("All Phases: $allPhases");
+      _showResults(allPhases);
     }
   
     }
@@ -292,6 +342,7 @@ Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
   catch (e) {
     setState(() {
       isLoading = false;
+      // _showResults(allPhases);
     });
 
     print("Error: $e");
