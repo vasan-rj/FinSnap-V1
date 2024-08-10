@@ -57,11 +57,6 @@ final List<Map<String, dynamic>> roadmapQuestions = [
     "Other"
   ]
 },
-{
-  "category": "Practical Application",
-  "question": "Do you want to practice with real-world scenarios examples in your roadmap?",
-  "options": ["Yes", "No"]
-},
 
 ];
 

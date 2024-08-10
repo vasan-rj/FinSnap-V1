@@ -183,36 +183,69 @@ int currentQuestionIndex = 0;
     }
   }
 
-Future<void> _calculateFinancialHealthScore(
-  Map<String, String> prompt) async {
-
+Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
   setState(() {
     isLoading = true;
   });
 
   try {
-    print("enter initialize Model......");
+    print("Enter initialize Model...");
     final model = await initializeModel();
-    print('after model initialize......');
+    print('After model initialization...');
 
     if (model != null) {
-      final content = [Content.text(prompt.toString())];
-      final response = await model.generateContent(content);
+      List<dynamic> allPhases = [];
+      bool morePhases = true;
+      int phaseIndex = 1;
 
-      // Log the raw response before parsing
-      // print("Raw response: ${response.text.toString()}");
+      while (morePhases) {
+        String fullResponse = "";
+        bool complete = false;
 
-      // Attempt to parse the JSON response
-      try {
-        final parsedResponse = jsonDecode(response.text.toString());
-        print("Parsed response: $parsedResponse");
+        while (!complete) {
+          final content = [Content.text("${prompt.toString()} Phase $phaseIndex")];
+          final response = await model.generateContent(content);
+          final parsedResponse = jsonDecode(response.text.toString());
 
-        // Further processing of parsedResponse...
+          print("Parsed response: $parsedResponse");
 
-      } catch (jsonError) {
-        print("JSON Parsing Error: $jsonError");
-        Get.snackbar("Error", "Failed to parse response. Please try again.");
+          if (parsedResponse['phases'] != null) {
+            allPhases.add(parsedResponse['phases']);
+
+            fullResponse += response.text.toString();
+          }
+
+          // Check for truncation and "MoreContent" flag
+          if (response.text.toString().endsWith(",") || 
+              response.text.toString().endsWith(" ")) {
+            print("Response seems incomplete, requesting more content...");
+            complete = false;
+          } else {
+            complete = true;
+          }
+
+          // Add to phases if full response
+          if (fullResponse.isNotEmpty) {
+            allPhases.add(parsedResponse['phases']);
+          }
+
+          // Check if there are more phases to fetch
+          morePhases = parsedResponse['MoreContent'] == "True";
+          if(parsedResponse['MoreContent'] == "True")
+          {
+            morePhases =true;
+          }
+          
+           if (parsedResponse['MoreContent'] != "True") {
+            morePhases = false;
+          }
+          phaseIndex++;
+        }
       }
+
+      // Combine and use allPhases for the complete roadmap
+      print("All Phases: $allPhases");
+      // _showResults(allPhases);
     }
   } catch (e) {
     setState(() {
@@ -227,6 +260,72 @@ Future<void> _calculateFinancialHealthScore(
     });
   }
 }
+
+// Future<void> _calculateFinancialHealthScore(
+//     Map<String, String> prompt) async {
+
+//   setState(() {
+//     isLoading = true;
+//   });
+
+//   try {
+//     print("Enter initialize Model...");
+//     final model = await initializeModel();
+//     print('After model initialization...');
+
+//     if (model != null) {
+//       List<dynamic> allPhases = [];
+//       bool morePhases = true;
+//       int phaseIndex = 1; // Start with phase 1
+
+//       while (morePhases) {
+//         final content = [
+//           Content.text(
+//               "${prompt.toString()} Phase $phaseIndex")
+//         ];
+        
+//         final response = await model.generateContent(content);
+
+//         try {
+//           final parsedResponse = jsonDecode(response.text.toString());
+//           print("Parsed response: $parsedResponse");
+
+//           if (parsedResponse['phases'] != null) {
+//             allPhases.add(parsedResponse['phases']); // Add the current phase
+//           }
+
+//           // Check if more phases are to be generated
+//           morePhases = parsedResponse['MoreContent'] == "True";
+//           phaseIndex++; // Increment phase index for the next API call
+
+//         } catch (jsonError) {
+//           print("JSON Parsing Error: $jsonError");
+//           Get.snackbar("Error", "Failed to parse response. Please try again.");
+//           morePhases = false; // Exit the loop if parsing fails
+//         }
+//       }
+
+//       // Now `allPhases` contains all the phases combined from multiple responses
+//       print("All Phases: $allPhases");
+
+//       // Further processing of `allPhases`...
+//       // For example, you can now show the full roadmap using _showResults()
+
+//     }
+//   } catch (e) {
+//     setState(() {
+//       isLoading = false;
+//     });
+
+//     print("Error: $e");
+//     Get.snackbar("Error", "An unexpected error occurred. Please try again.");
+//   } finally {
+//     setState(() {
+//       isLoading = false;
+//     });
+//   }
+// }
+
 
   // Future<void> _calculateFinancialHealthScore(
   //     Map<String, String> prompt) async {
