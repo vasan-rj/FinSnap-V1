@@ -37,7 +37,7 @@ final List<Map<String, dynamic>> roadmapQuestions = [
 {
   "category": "Timeline",
   "question": "When do you want to achieve your learning goal by?",
-  "options": ["Within 1 week","1-2 weeks","2-4 weeks","1-3 months", "3-6 months", "6-12 months", "More than 12 months"]
+  "options": ["Within 1 week","1month", "2 month", "3 month", "6 month","9 month","12 month","More than 12 months"]
 },
 {
   "category": "Timeline",

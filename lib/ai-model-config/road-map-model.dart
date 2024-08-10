@@ -14,7 +14,7 @@ initializeModel() async {
           temperature: 0.7,
           topP: 0.85,
           topK: 20,
-          maxOutputTokens: 2000,
+          maxOutputTokens: 4000,
           responseMimeType: 'application/json',
         ),
        systemInstruction: Content.system("""
@@ -22,7 +22,7 @@ initializeModel() async {
 
   Generate the roadmap one phase at a time. Indicate if there are more phases to generate by setting "MoreContent" to "True". Here is the structure for each phase:
 
-  Follow Type1 for 1st phase and for the rest follow type 2 response schema to generate the roadmap:
+  Follow Type 1 Roadmap for 1st phase and for the rest follow Type 2 Roadmap. Here is the response schema to generate the roadmap:
 
   Type 1 Roadmap:
 
@@ -51,7 +51,7 @@ initializeModel() async {
       }
     ],
 
-    "MoreContent": "True" // Set to "True" if there are more phases to generate
+    "MoreContent": "True",  // Set to "True" if there are more phases to generate
   }
 
 
@@ -80,7 +80,7 @@ initializeModel() async {
       }
     ],
 
-    "MoreContent": "True" // Set to "True" if there are more phases to generate
+    "MoreContent": "True", // Set to "True" if there are more phases to generate
   }
 
   Guidelines:

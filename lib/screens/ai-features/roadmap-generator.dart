@@ -182,13 +182,24 @@ int currentQuestionIndex = 0;
       });
     }
   }
+bool isDuplicate(String lastPhase, String currentPhase) {
+   if(lastPhase == currentPhase)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
 
 Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
   setState(() {
     isLoading = true;
   });
 
-  try {
+  try 
+  {
     print("Enter initialize Model...");
     final model = await initializeModel();
     print('After model initialization...');
@@ -199,7 +210,7 @@ Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
       int phaseIndex = 1;
 
       while (morePhases) {
-        String fullResponse = "";
+        // String fullResponse = "";
         bool complete = false;
 
         while (!complete) {
@@ -209,11 +220,43 @@ Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
 
           print("Parsed response: $parsedResponse");
 
-          if (parsedResponse['phases'] != null) {
-            allPhases.add(parsedResponse['phases']);
+          
 
-            fullResponse += response.text.toString();
-          }
+            int last_ind=allPhases.length-1;
+
+            // dynamic lastresponse = allPhases[last_ind];
+            // String last_response=lastresponse[0]['phasename'];
+            // String current_response=parsedResponse['phases'][0]['phasename'];
+            
+            // for the very first response ..
+            // Check if the first phase and add it if it's not a duplicate
+         if (parsedResponse['phases'] != null) 
+         {
+            if (allPhases.isEmpty) 
+            {
+              allPhases.add(parsedResponse['phases']);
+            } 
+
+            else if(parsedResponse['phases'] != null) 
+          {
+            // Check for duplicates in the remaining phases
+            dynamic lastresponse = allPhases.last; // Safely access the last element
+            String last_response = lastresponse[0]['phasename'];
+            String current_response = parsedResponse['phases'][0]['phasename'];
+            print ("vasan\n");
+            print("${last_response} , \n\n\n\n ${current_response}");
+            if (!isDuplicate(last_response, current_response)) 
+            {
+              print("print Priya.......");
+              print(parsedResponse['phases']);
+              allPhases.add(parsedResponse['phases']);
+            }
+            else{
+              print("Duplicate Phase rejected..");
+              print("\n"*10);
+            }
+          };
+          
 
           // Check for truncation and "MoreContent" flag
           if (response.text.toString().endsWith(",") || 
@@ -225,19 +268,14 @@ Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
           }
 
           // Add to phases if full response
-          if (fullResponse.isNotEmpty) {
-            allPhases.add(parsedResponse['phases']);
-          }
+          // if (fullResponse.isNotEmpty) {
+          //   allPhases.add(parsedResponse['phases']);
+          // }
 
           // Check if there are more phases to fetch
           morePhases = parsedResponse['MoreContent'] == "True";
-          if(parsedResponse['MoreContent'] == "True")
-          {
-            morePhases =true;
-          }
-          
-           if (parsedResponse['MoreContent'] != "True") {
-            morePhases = false;
+           if (!morePhases) {
+            break;
           }
           phaseIndex++;
         }
@@ -247,7 +285,11 @@ Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
       print("All Phases: $allPhases");
       // _showResults(allPhases);
     }
-  } catch (e) {
+  
+    }
+  
+  } 
+  catch (e) {
     setState(() {
       isLoading = false;
     });
