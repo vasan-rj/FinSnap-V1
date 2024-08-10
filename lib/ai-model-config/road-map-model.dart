@@ -3,66 +3,87 @@ import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:finsnap/models/custom_chat_quiz_model.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-final apiKey = 'AIzaSyDdKgK8wpfxgAeHnOgpjSV_5VC5nBCP_rU';
+const apiKey = 'AIzaSyDdKgK8wpfxgAeHnOgpjSV_5VC5nBCP_rU';
 
 initializeModel() async {
-    try {
-      final model = GenerativeModel(
+  try {
+    final model = GenerativeModel(
         model: 'gemini-1.5-pro',
         apiKey: apiKey,
         generationConfig: GenerationConfig(
           temperature: 0.7,
           topP: 0.85,
           topK: 20,
-          maxOutputTokens: 500,
+          maxOutputTokens: 2000,
           responseMimeType: 'application/json',
         ),
-        systemInstruction: Content.system("""
-          You are a Personalized Financial Health Score Predictor, your goal is to analyze the gathered relevant financial information from the user to provide personalized financial health score and recommendations for user based on the user info. 
-          Do not make assumptions, Assign Finance Health Score from 0-100, question from the category has following percentage weights is given below,
+       systemInstruction: Content.system("""
+  You are a Personalized Financial Roadmap Generator. Analyze the user's information to provide a structured, clear, and concise personalized financial roadmap. Include related free study materials, such as articles, blog posts, and e-books.
 
-          "category-with-weight%" : { 
-                User Personal info: 5%
-                Income and Employment: 20%
-                Savings and Investments: 20%
-                Expenses and Budgeting: 15%
-                Debt and Liabilities: 15%
-                Financial Goals: 10%
-                Risk Management and Insurance: 5%
-                Financial Knowledge and Behavior: 10%
-     
-             }
-            each category will have it's own set of questions.
+  Follow this response schema to generate the roadmap:
 
-          follow type 1 response Schema for reply,
--
-          type 1 response schema:
-
-              {
-                type: "reply",
-                content: {
-                  "finance-score": <your overall Finance Score (0-100)>,
-                  "category-marks":{
-                    "<category 1>" :<mark 1>,
-                    "<category 2>" :<mark 2>,
-                    "<category 3>" :<mark 3>,
-                    .
-                    .
-                    .
-                    "<category n>" :<mark n>,
-
-                  },
-                  "recommendation":<your recommendation for user to increase his/her Finance health Score> 
-                  
-              }
-          """),
-      );
-
-      return model;
-    } catch (e) {
-      // const SnackBar(content: Text("Model Error"));
-    }
+  {
+    "type": "Roadmap",
+    "goal": "<Roadmap Goal>",
+    "totalduration": "<Total Duration>",
+    "phases": [
+      {
+        "phasename": "<Phase Name>",
+        "duration": "<Phase Duration>",
+        "topics": 
+        [
+          {
+            "topicname": "<Topic Name>",
+            "concepts": 
+              [
+                "<Concept 1>",
+                "<Concept 2>",
+                "<Concept 3>"
+              ]
+            
+          }
+        ]
+      }
+         {
+        "phasename": "<Phase Name>",
+        "duration": "<Phase Duration>",
+        "topics": [
+          .....
+        ]        
+      },
+      {
+        "phasename": "<Phase Name>",
+        "duration": "<Phase Duration>",
+        "topics": [
+          .....
+        ]
+      }
+    ],
+      "Additional_Resource": 
+      [
+              "<Resource Name 1>",
+              "<Resource Name 2>",
+      ],
+    "Tip": "<Additional Tips or Advice>",
+    "tasks": [
+              "<Task 1>",
+              "<Task 2>",
+            ]
   }
+
+  Guidelines:
+  1. Generate a complete roadmap, covering all necessary phases.
+  2. Ensure the JSON response is well-formed and complete.
+  3. Topics and concepts should be relevant to the roadmap goal.
+  4. If the roadmap is too long, summarize some sections but maintain all phases.
+""")
+    );
+
+    return model;
+  } catch (e) {
+    // const SnackBar(content: Text("Model Error"));
+  }
+}
 
 
   // ******

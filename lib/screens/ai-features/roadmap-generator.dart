@@ -26,17 +26,18 @@ int currentQuestionIndex = 0;
     setState(() {
       userResponses[questions] = option;
       print(userResponses);
-      if (currentQuestionIndex < roadmapQuestions.length - 1) {
+      if (currentQuestionIndex < roadmapQuestions.length - 1) 
+      {
         currentQuestionIndex++;
       } else 
       {
-        if(userResponses.length>9)
+        if(userResponses.length>4)
         {
             _calculateFinancialHealthScore(userResponses);
         }
         else
         {
-          Get.snackbar("Error", "You must select atleast 10 question..");
+          Get.snackbar("Error", "You must select atleast 4 question..");
         }
         // All questions answered
         
@@ -182,52 +183,100 @@ int currentQuestionIndex = 0;
     }
   }
 
-  Future<void> _calculateFinancialHealthScore(
-      Map<String, String> prompt) async {
+Future<void> _calculateFinancialHealthScore(
+  Map<String, String> prompt) async {
+
+  setState(() {
+    isLoading = true;
+  });
+
+  try {
+    print("enter initialize Model......");
+    final model = await initializeModel();
+    print('after model initialize......');
+
+    if (model != null) {
+      final content = [Content.text(prompt.toString())];
+      final response = await model.generateContent(content);
+
+      // Log the raw response before parsing
+      // print("Raw response: ${response.text.toString()}");
+
+      // Attempt to parse the JSON response
+      try {
+        final parsedResponse = jsonDecode(response.text.toString());
+        print("Parsed response: $parsedResponse");
+
+        // Further processing of parsedResponse...
+
+      } catch (jsonError) {
+        print("JSON Parsing Error: $jsonError");
+        Get.snackbar("Error", "Failed to parse response. Please try again.");
+      }
+    }
+  } catch (e) {
     setState(() {
-      isLoading = true;
+      isLoading = false;
     });
 
-    try {
-      final model = await initializeModel();
-
-      if (model != null) {
-        final content = [Content.text((prompt.toString()))];
-        final response = await model.generateContent(content);
-
-        final parsedResponse = jsonDecode(response.text.toString());
-        final responseType = parsedResponse['type'];
-        final responseContent = parsedResponse['content'];
-        // things inside content..
-        final finance_score = responseContent['finance-score'];
-        final category_marks = responseContent['category-marks'];
-
-        final recommendation_text = responseContent['recommendation'];
-        // recommendation:
-
-        print("response from gemini.....");
-        print("Raw response text: ${response.text.toString()}");
-        print(responseType);
-        print(responseContent);
-        print(finance_score);
-        print(category_marks);
-        print(recommendation_text);
-        print(parsedResponse);
-
-        setState(() {
-          isLoading = false;
-          _showResults(
-              finance_score, recommendation_text.toString(), category_marks);
-        });
-      }
-    } catch (e) {
-      setState(() {
-        isLoading = false;
-      });
-
-      print("error inside _calculateFinancialHealthScore");
-    }
+    print("Error: $e");
+    Get.snackbar("Error", "An unexpected error occurred. Please try again.");
+  } finally {
+    setState(() {
+      isLoading = false;
+    });
   }
+}
+
+  // Future<void> _calculateFinancialHealthScore(
+  //     Map<String, String> prompt) async {
+    
+  //   setState(() {
+  //     isLoading = true;
+  //   });
+
+  //   try {
+  //     print("enter initialize Model......");
+  //     final model = await initializeModel();
+  //     print('after modle initialize......');
+
+  //     if (model != null) {
+  //       final content = [Content.text((prompt.toString()))];
+  //       final response = await model.generateContent(content);
+
+  //       final parsedResponse = jsonDecode(response.text.toString());
+  //       // final responseType = parsedResponse['type'];
+  //       // final responseContent = parsedResponse['content'];
+  //       // // things inside content..
+  //       // final finance_score = responseContent['finance-score'];
+  //       // final category_marks = responseContent['category-marks'];
+
+  //       // final recommendation_text = responseContent['recommendation'];
+  //       // // recommendation:
+
+  //       print("response from gemini.....");
+  //       // print("Raw response text: ${response.text.toString()}");
+  //       // print(responseType);
+  //       // print(responseContent);
+  //       // print(finance_score);
+  //       // print(category_marks);
+  //       // print(recommendation_text);
+  //       print(parsedResponse);
+
+  //       // setState(() {
+  //       //   isLoading = false;
+  //       //   _showResults(
+  //       //       finance_score, recommendation_text.toString(), category_marks);
+  //       // });
+  //     }
+  //   } catch (e) {
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+
+  //     print("error VVVVVV: $e");
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -236,12 +285,12 @@ int currentQuestionIndex = 0;
       appBar: AppBar(
         title: Center(
           child: SizedBox(
-            child: Text('Finance Health Score',
+            child: Text('AI Financial Roadmap Generator',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: const Color.fromARGB(210, 5, 242, 155),
-                )),
+                ),),
           ),
         ),
         backgroundColor: Colors.black87,
