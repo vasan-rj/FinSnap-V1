@@ -1,18 +1,17 @@
-# FinSnap: Personalized Financial Health App
+# FinSnap: Your AI-Driven Financial Companion
 
-![FinSnap Logo](link-to-logo-image) <!-- Replace with the actual image link -->
+![FinSnap Logo](link-to-logo-image)
 
 FinSnap is an AI-powered financial health app designed to help users understand and improve their financial well-being. By analyzing spending habits, saving patterns, investments, and debt levels, FinSnap provides a personalized financial health score along with actionable recommendations.
 
 ## 🚀 Features
 
 - **Personalized Financial Health Score**: Calculate your financial health score based on your spending, savings, investments, and debts.
+- **Personalized AI Roadmap generator**: Get your personalized AI financial Roadmap based on user's info.
 - **AI-Driven Recommendations**: Receive customized recommendations to improve your financial habits and overall financial health.
 - **Interactive Quiz**: Engage with a series of questions designed to assess various aspects of your financial life.
-- **Real-time Analysis**: Get instant feedback after completing the quiz with a detailed breakdown of your financial health score.
 - **Custom Notifications**: Stay informed with real-time updates and alerts tailored to your financial interests and goals.
 - **Interactive Chat Interface**: Engage with FinSnap's AI through an intuitive chat interface, optimized for all screen sizes.
-- **Secure & Private**: Your financial data is securely processed using the latest encryption standards.
 
 ## 🎨 App Theme & Styling
 
@@ -36,13 +35,15 @@ FinSnap features a sleek and modern UI with a dark theme that emphasizes clarity
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/finsnap.git
+    git clone https://github.com/vasan-rj/FinSnap-V1.git
     cd finsnap
     ```
 
 2. **Install dependencies:**
 
+    Connect device through android emulator or physical device USB debugging.
     ```bash
+    
     flutter pub get
     ```
 
@@ -85,11 +86,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Contributors
 
-- *Your Name* - [@yourusername](https://github.com/yourusername)
 
 ## 📧 Contact
 
-For any inquiries or support, please reach out via [email@domain.com](mailto:email@domain.com).
+For any inquiries or support, please reach out via [contact.finsnap@gmail.com](mailto:contact.finsnap@gmail.com).
 
 ## 📁 Project Structure
 
@@ -144,32 +144,54 @@ final model = GenerativeModel(
 );
 ```
 
-## 🎨 Themes and Styling
+Here's the updated "Contributing" section with instructions for contributing via a new branch:
 
-FinSnap adopts a modern, dark-themed user interface with a focus on usability and aesthetics. The design is responsive, ensuring a consistent experience across various devices and screen sizes.
-
-- **Primary Color**: #00A19A
-- **Secondary Color**: #333333
-- **Accent Color**: #05F29B
-
-### Typography
-
-- **Main Font**: Roboto
-- **Font Sizes**:
-  - Header: 24px
-  - Sub-header: 18px
-  - Body: 14px
+---
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! Please read our [Contributing Guidelines](CONTRIBUTING.md) to get started.
+We welcome contributions from the community! To get started, follow these steps:
+
+1. **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/vasan-rj/FinSnap-V1.git
+    cd FinSnap-V1
+    ```
+
+2. **Create a new branch for your changes:**
+
+    ```bash
+    git checkout -b your-feature-branch
+    ```
+
+3. **Make your changes and commit them:**
+
+    ```bash
+    git add .
+    git commit -m "Describe your changes here"
+    ```
+
+4. **Push your changes to GitHub:**
+
+    ```bash
+    git push origin your-feature-branch
+    ```
+
+5. **Open a Pull Request:**
+
+    Go to the [GitHub repository](https://github.com/vasan-rj/FinSnap-V1) and open a new Pull Request from your feature branch to the main branch. Provide a description of your changes and why they should be merged.
+
+Thank you for your contributions!
+
+---
+
+Feel free to adjust the instructions based on your preferred workflow or any additional guidelines you might have.
+
 
 ## 🗨️ Acknowledgements
 
 Special thanks to the Google Gemini team for their powerful AI models and to the Flutter community for their support and contributions.
 
 
-Made with ❤️ using <strong>Flutter</strong>
-
-
-FinSnap - Your AI-Driven Financial Companion
+Made with ❤️ using <strong>Flutter, Firebase  & Google Gemini.</strong>
