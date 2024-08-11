@@ -14,14 +14,6 @@ FinSnap is an AI-powered financial health app designed to help users understand 
 - **Custom Notifications**: Stay informed with real-time updates and alerts tailored to your financial interests and goals.
 - **Interactive Chat Interface**: Engage with FinSnap's AI through an intuitive chat interface, optimized for all screen sizes.
 
-## 🎨 App Theme & Styling
-
-FinSnap features a sleek and modern UI with a dark theme that emphasizes clarity and ease of use. The app uses a consistent color palette for a cohesive look and feel:
-
-- **Primary Color**: #1A1A1A (Dark Gray)
-- **Accent Color**: #00FF7F (Green)
-- **Text Color**: #FFFFFF (White)
-- **Button Color**: #2A9D8F (Teal)
 
 ## 🛠️ Getting Started
 
