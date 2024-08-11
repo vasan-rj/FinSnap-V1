@@ -64,17 +64,17 @@ FinSnap features a sleek and modern UI with a dark theme that emphasizes clarity
 
 ## 📱 App Screenshots
 
-Home Screen
+-Home Screen
 ![Home Screen](readme-assets/home_page.jpeg) 
-Quiz Screen
+-Quiz Screen
 ![Quiz Screen](readme-assets/quiz_screen.jpeg) 
-Result Screen 
+-Result Screen 
 ![Result Screen](readme-assets/ai_health_score.jpeg) 
-Finance Health Score Recommendation
+-Finance Health Score Recommendation
 ![Finance Health Score Recommendation](readme-assets/roadmap.jpeg) 
-AI Assistant Screen
+-AI Assistant Screen
 ![AI Assistant Screen](readme-assets/chat_bot.jpeg)  
-Custom Remainder Screen
+-Custom Remainder Screen
 ![Custom Remainder Screen](readme-assets/remainder.jpeg)  
 ## 📖 How It Works
 
