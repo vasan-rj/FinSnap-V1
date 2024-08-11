@@ -64,18 +64,24 @@ FinSnap features a sleek and modern UI with a dark theme that emphasizes clarity
 
 ## 📱 App Screenshots
 
--Home Screen
-![Home Screen](readme-assets/home_page.jpeg) 
--Quiz Screen
-![Quiz Screen](readme-assets/quiz_screen.jpeg) 
--Result Screen 
-![Result Screen](readme-assets/ai_health_score.jpeg) 
--Finance Health Score Recommendation
-![Finance Health Score Recommendation](readme-assets/roadmap.jpeg) 
--AI Assistant Screen
-![AI Assistant Screen](readme-assets/chat_bot.jpeg)  
--Custom Remainder Screen
-![Custom Remainder Screen](readme-assets/remainder.jpeg)  
+### Home Screen
+<img src="readme-assets/home_page.jpeg" alt="Home Screen" width="300">
+
+### Quiz Screen
+<img src="readme-assets/quiz_screen.jpeg" alt="Quiz Screen" width="300">
+
+### Result Screen
+<img src="readme-assets/ai_health_score.jpeg" alt="Result Screen" width="300">
+
+### Finance Health Score Recommendation
+<img src="readme-assets/roadmap.jpeg" alt="Finance Health Score Recommendation" width="300">
+
+### AI Assistant Screen
+<img src="readme-assets/chat_bot.jpeg" alt="AI Assistant Screen" width="300">
+
+### Custom Reminder Screen
+<img src="readme-assets/remainder.jpeg" alt="Custom Reminder Screen" width="300">
+
 ## 📖 How It Works
 
 1. **User Interaction**: The user engages with a series of questions in a quiz format.
