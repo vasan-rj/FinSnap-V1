@@ -1,6 +1,6 @@
 # FinSnap: Your AI-Driven Financial Companion
 
-![FinSnap Logo]<img src="readme-assets/logo.jpeg" alt="FinSnap Logo" width="100" height="100">
+<img src="readme-assets/logo.jpeg" alt="FinSnap Logo" width="100" height="100">
 
 
 FinSnap is an AI-powered financial health app designed to help users understand and improve their financial well-being. By analyzing spending habits, saving patterns, investments, and debt levels, FinSnap provides a personalized financial health score along with actionable recommendations.
@@ -66,7 +66,7 @@ FinSnap features a sleek and modern UI with a dark theme that emphasizes clarity
 
 | Home Screen | Quiz Screen | Result Screen | Finance Health Score Recommendation | AI Assistant Screen | Custom Remainder Screen
 |-------------|-------------|---------------|
-| ![Home Screen](assets/19ef9af4-eb0b-4da2-831f-c481ddf15577.jpg) | ![Quiz Screen](assets/f030edf9-bf06-497f-bf7b-b49c9c77e536.jpg) | ![Result Screen](assets/dbed3ea4-c27c-4763-af3f-9a240d2c6982.jpg) | ![Finance Health Score Recommendation](assets/ec36e908-8edf-412a-bf32-915ce79cb182.jpg) |![AI Assistant Screen](assets/3ddee744-9bc0-4990-b405-591a009614b0.jpg)  |![Custom Remainder Screen](assets/129a3f75-7753-4039-8427-19465dce4336.jpg) |  <!-- Replace with actual screenshots -->
+| ![Home Screen](readme-assets/home_page.jpeg) | ![Quiz Screen](readme-assets/quiz_screen.jpeg) | ![Result Screen](readme-assets/ai_health_score.jpeg) | ![Finance Health Score Recommendation](readme-assets/roadmap.jpeg) |![AI Assistant Screen](readme-assets/chat_bot.jpeg)  |![Custom Remainder Screen](readme-assets/remainder.jpeg) |  <!-- Replace with actual screenshots -->
 
 ## 📖 How It Works
 
