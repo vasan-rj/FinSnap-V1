@@ -57,6 +57,7 @@ dependencies:
   percent_indicator: ^4.2.3
   pdf: ^3.11.1
   printing: ^5.13.1
+  path_provider: ^2.1.4
   # dio: ^5.5.0+1
   
 
