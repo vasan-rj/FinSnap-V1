@@ -1,6 +1,6 @@
 # FinSnap: Your AI-Driven Financial Companion
 
-![FinSnap Logo](link-to-logo-image)
+![FinSnap Logo](readme-assets/logo.jpeg)
 
 FinSnap is an AI-powered financial health app designed to help users understand and improve their financial well-being. By analyzing spending habits, saving patterns, investments, and debt levels, FinSnap provides a personalized financial health score along with actionable recommendations.
 
