@@ -65,27 +65,27 @@ FinSnap features a sleek and modern UI with a dark theme that emphasizes clarity
 ## 📱 App Screenshots
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 10px;">
-  <div style="flex: 1 1 300px; text-align: center;">
+  <div >
     <h3>Home Screen</h3>
     <img src="readme-assets/home_page.jpeg" alt="Home Screen" width="300">
   </div>
-  <div style="flex: 1 1 300px; text-align: center;">
+  <div >
     <h3>Quiz Screen</h3>
     <img src="readme-assets/quiz_screen.jpeg" alt="Quiz Screen" width="300">
   </div>
-  <div style="flex: 1 1 300px; text-align: center;">
+  <div >
     <h3>Result Screen</h3>
     <img src="readme-assets/ai_health_score.jpeg" alt="Result Screen" width="300">
   </div>
-  <div style="flex: 1 1 300px; text-align: center;">
+  <div >
     <h3>Finance Health Score Recommendation</h3>
     <img src="readme-assets/roadmap.jpeg" alt="Finance Health Score Recommendation" width="300">
   </div>
-  <div style="flex: 1 1 300px; text-align: center;">
+  <div >
     <h3>AI Assistant Screen</h3>
     <img src="readme-assets/chat_bot.jpeg" alt="AI Assistant Screen" width="300">
   </div>
-  <div style="flex: 1 1 300px; text-align: center;">
+  <div >
     <h3>Custom Reminder Screen</h3>
     <img src="readme-assets/remainder.jpeg" alt="Custom Reminder Screen" width="300">
   </div>
