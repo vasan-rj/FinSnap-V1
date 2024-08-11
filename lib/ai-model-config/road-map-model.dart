@@ -30,9 +30,10 @@ initializeModel() async {
     "type": "Roadmap",
     "goal": "<Roadmap Goal>",
     "totalduration": "<Total Duration>",
-    "phases": [
+    "phases": 
+    [
       {
-        "phasename": "<Phase Name>",
+        "phasename": "<Phase Name>", example: "Phase 1 Indroudction to finance"
         "duration": "<Phase Duration>",
         "topics": 
         [
@@ -43,13 +44,19 @@ initializeModel() async {
                 "<Concept 1>",
                 "<Concept 2>",
                 "<Concept 3>"
-              ]
+              ],
             
           },
           ....
-        ]
+        ],
       }
     ],
+    "resource":
+      [
+        "<Resource_link 1>",
+        "<Resource_link 2>",
+        "<Resource_link 3>",
+      ],
 
     "MoreContent": "True",  // Set to "True" if there are more phases to generate
   }
@@ -61,7 +68,7 @@ initializeModel() async {
     "type": "Roadmap",
     "phases": [
       {
-        "phasename": "<Phase Name>",
+        "phasename": "<Phase Name>", example: "Phase 2  Indroudction to tax ..", 
         "duration": "<Phase Duration>",
         "topics": 
         [
@@ -79,6 +86,12 @@ initializeModel() async {
         ]
       }
     ],
+      "resource":
+      [
+        "<Resource_link 1>",
+        "<Resource_link 2>",
+        "<Resource_link 3>",
+      ],
 
     "MoreContent": "True", // Set to "True" if there are more phases to generate
   }

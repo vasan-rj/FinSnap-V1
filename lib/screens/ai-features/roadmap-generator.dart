@@ -1,9 +1,11 @@
 import 'package:finsnap/data/roadmap_queston.dart';
+import 'package:finsnap/functions/roadmap-pdf.dart';
 import 'package:flutter/material.dart';
 import 'package:finsnap/ai-model-config/road-map-model.dart';
 import 'package:get/get.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'dart:convert';
+<<<<<<< HEAD
 
 // 
 import 'package:pdf/pdf.dart';
@@ -11,6 +13,11 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+=======
+import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+>>>>>>> 664502b9bbb9fb1e156944d08b4817e0cb70b4b7
 
 class RoadmapGeneratorClass extends StatefulWidget {
   const RoadmapGeneratorClass({super.key});
@@ -20,7 +27,7 @@ class RoadmapGeneratorClass extends StatefulWidget {
 }
 
 class _RoadmapGeneratorClassState extends State<RoadmapGeneratorClass> {
-int currentQuestionIndex = 0;
+  int currentQuestionIndex = 0;
   Map<String, String> userResponses = {};
   bool isLoading = false;
 
@@ -28,22 +35,15 @@ int currentQuestionIndex = 0;
     setState(() {
       userResponses[questions] = option;
       print(userResponses);
-      if (currentQuestionIndex < roadmapQuestions.length - 1) 
-      {
+      if (currentQuestionIndex < roadmapQuestions.length - 1) {
         currentQuestionIndex++;
-      } else 
-      {
-        if(userResponses.length>4)
-        {
-            _calculateFinancialHealthScore(userResponses);
-        }
-        else
-        {
+      } else {
+        if (userResponses.length > 4) {
+          _calculateFinancialHealthScore(userResponses);
+        } else {
           Get.snackbar("Error", "You must select atleast 4 question..");
         }
         // All questions answered
-        
-        
       }
     });
   }
@@ -113,82 +113,140 @@ int currentQuestionIndex = 0;
 //   );
 // }
 
-void _showResults(List<dynamic> phases) {
-  showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Center(child: Text("AI Financial Roadmap")),
-      content: Container(
-        width: double.maxFinite,
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: phases.length,
-          itemBuilder: (context, index) {
-            var phase = phases[index][0];
-            
-            String? phaseName = phase['phasename'] as String?;
-            String? duration = phase['duration'] as String?;
-            List<dynamic>? topics = phase['topics'] as List<dynamic>?;
+  void _showResults(List<dynamic> phases) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Center(child: Text("AI Financial Roadmap")),
+        content: Container(
+          width: double.maxFinite,
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: phases.length,
+            itemBuilder: (context, index) {
+              var phase = phases[index][0];
 
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    phaseName ?? "Unknown Phase",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(210, 5, 242, 155),
+              String? phaseName = phase['phasename'] as String?;
+              String? duration = phase['duration'] as String?;
+              List<dynamic>? topics = phase['topics'] as List<dynamic>?;
+              // List<dynamic>? resource = phases[index]['resource'] as List<dynamic>?;
+
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      phaseName ?? "Unknown Phase",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(210, 5, 242, 155),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    "Duration: ${duration ?? "Unknown"}",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  SizedBox(height: 8),
-                  if (topics != null && topics.isNotEmpty)
-                    ...topics.map((topic) {
-                      String? topicName = topic['topicname'] as String?;
-                      List<dynamic>? concepts = topic['concepts'] as List<dynamic>?;
+                    SizedBox(height: 8),
+                    Text(
+                      "Duration: ${duration ?? "Unknown"}",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    SizedBox(height: 8),
+                    if (topics != null && topics.isNotEmpty)
+                      ...topics.map((topic) {
+                        String? topicName = topic['topicname'] as String?;
+                        List<dynamic>? concepts =
+                            topic['concepts'] as List<dynamic>?;
+                        // List<dynamic>? resource =
+                        //     topic['resource'] as List<dynamic>?;
 
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 12.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              topicName ?? "Unknown Topic",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.blueGrey,
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                topicName ?? "Unknown Topic",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.blueGrey,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 6),
-                            if (concepts != null && concepts.isNotEmpty)
-                              ...concepts.map((concept) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(left: 16.0, bottom: 4.0),
-                                  child: Text(
-                                    "- $concept",
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                );
-                              }).toList(),
-                          ],
-                        ),
-                      );
-                    }).toList(),
-                  Divider(color: Colors.grey),
-                ],
-              ),
-            );
-          },
+                              SizedBox(height: 6),
+                              if (concepts != null && concepts.isNotEmpty)
+                                ...concepts.map((concept) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 16.0, bottom: 4.0),
+                                    child: Text(
+                                      "- $concept",
+                                      style: TextStyle(fontSize: 14),
+                                    ),
+                                  );
+                                }).toList(),
+                              SizedBox(height: 6),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+
+                    // if (resource != null && resource.isNotEmpty)
+                    // ...resource.map((resource) {
+                    //   return Padding(
+                    //     padding: const EdgeInsets.only(top: 12.0),
+                    //     child: Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         Text(
+                    //           "Resource: ${resource['resourcename']}",
+                    //           style: TextStyle(
+                    //             fontSize: 16,
+                    //             fontWeight: FontWeight.w600,
+                    //             color: Colors.blueGrey,
+                    //           ),
+                    //         ),
+                    //         SizedBox(height: 6),
+                    //       ],
+                    //     ),
+                    //   );
+                    // }).toList(),
+
+                    Divider(color: Colors.grey),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
+        actions: [
+          TextButton(
+            // onPressed: () => _generatePdf(phases), // Call the function to generate the PDF
+            onPressed: () async {
+              // Navigator.of(context).pop();
+              await generatePdf(phases); // Generate the PDF
+            },
+            style: TextButton.styleFrom(
+              backgroundColor: Color.fromARGB(164, 5, 242, 155),
+              minimumSize: Size(100, 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
+            child: Text("Download PDF"),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            style: TextButton.styleFrom(
+              backgroundColor: Color.fromARGB(164, 5, 242, 155),
+              minimumSize: Size(100, 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
+            child: Text("OK"),
+          ),
+        ],
       ),
+<<<<<<< HEAD
       actions: [
         TextButton(
           onPressed: (){
@@ -219,6 +277,10 @@ void _showResults(List<dynamic> phases) {
     ),
   );
 }
+=======
+    );
+  }
+>>>>>>> 664502b9bbb9fb1e156944d08b4817e0cb70b4b7
 
   Future<void> goBack_func() async {
     if (currentQuestionIndex != 0) {
@@ -235,109 +297,127 @@ void _showResults(List<dynamic> phases) {
       });
     }
   }
-bool isDuplicate(String lastPhase, String currentPhase) {
-   if(lastPhase == currentPhase)
-  {
-    return true;
+
+  bool isDuplicate(String lastPhase, String currentPhase) {
+    if (lastPhase == currentPhase) {
+      return true;
+    } else {
+      return false;
+    }
   }
-  else
-  {
-    return false;
-  }
-}
 
-Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
-  setState(() {
-    isLoading = true;
-  });
+  Future<void> _calculateFinancialHealthScore(
+      Map<String, String> prompt) async {
+    setState(() {
+      isLoading = true;
+    });
 
-  try 
-  {
-    print("Enter initialize Model...");
-    final model = await initializeModel();
-    print('After model initialization...');
+    try {
+      print("Enter initialize Model...");
+      final model = await initializeModel();
+      print('After model initialization...');
 
+<<<<<<< HEAD
     if (model != null) 
     {
 
       List<dynamic> allPhases = [];
       bool morePhases = true;
       int phaseIndex = 1;
+=======
+      if (model != null) 
+      {
+        List<dynamic> allPhases = [];
+        bool morePhases = true;
+        int phaseIndex = 1;
+>>>>>>> 664502b9bbb9fb1e156944d08b4817e0cb70b4b7
 
-      while (morePhases) {
-        // String fullResponse = "";
-        bool complete = false;
+        while (morePhases) 
+        {
+          // String fullResponse = "";
+          bool complete = false;
 
-        while (!complete) {
-          final content = [Content.text("${prompt.toString()} Phase $phaseIndex")];
-          final response = await model.generateContent(content);
-          final parsedResponse = jsonDecode(response.text.toString());
+          while (!complete) {
+            final content = [
+              Content.text("${prompt.toString()} Phase $phaseIndex")
+            ];
+            final response = await model.generateContent(content);
+            final parsedResponse = jsonDecode(response.text.toString());
 
-          print("Parsed response: $parsedResponse");
+            print("Parsed response: $parsedResponse");
 
-            int last_ind=allPhases.length;
+            int last_ind = allPhases.length;
 
             // dynamic lastresponse = allPhases[last_ind];
             // String last_response=lastresponse[0]['phasename'];
             // String current_response=parsedResponse['phases'][0]['phasename'];
-            
+
             // for the very first response ..
             // Check if the first phase and add it if it's not a duplicate
-         if (parsedResponse['phases'] != null) 
-         {
-            if (allPhases.isEmpty) 
-            {
-              allPhases.add(parsedResponse['phases']);
-            } 
+            if (parsedResponse['phases'] != null) {
+              if (allPhases.isEmpty) {
+                allPhases.add(parsedResponse['phases']);
+              } else if (parsedResponse['phases'] != null) {
+                // Check for duplicates in the remaining phases
+                dynamic lastresponse =
+                    allPhases.last; // Safely access the last element
+                String last_response = lastresponse[0]['phasename'];
+                String current_response =
+                    parsedResponse['phases'][0]['phasename'];
+                // print ("vasan\n");
+                // print("${last_response} , \n\n\n\n ${current_response}");
+                if (!isDuplicate(last_response, current_response)) {
+                  // print("print Priya.......");
+                  // print(parsedResponse['phases']);
+                  allPhases.add(parsedResponse['phases']);
+                } else {
+                  print("Duplicate Phase rejected..");
+                  print("\n" * 10);
+                }
+              }
+              ;
 
-            else if(parsedResponse['phases'] != null) 
-          {
-            // Check for duplicates in the remaining phases
-            dynamic lastresponse = allPhases.last; // Safely access the last element
-            String last_response = lastresponse[0]['phasename'];
-            String current_response = parsedResponse['phases'][0]['phasename'];
-            // print ("vasan\n");
-            // print("${last_response} , \n\n\n\n ${current_response}");
-            if (!isDuplicate(last_response, current_response)) 
-            {
-              // print("print Priya.......");
-              // print(parsedResponse['phases']);
-              allPhases.add(parsedResponse['phases']);
-            }
-            else{
-              print("Duplicate Phase rejected..");
-              print("\n"*10);
-            }
-          };
-          
+              // Check for truncation and "MoreContent" flag
+              if (response.text.toString().endsWith(",") ||
+                  response.text.toString().endsWith(" ")) {
+                print("Response seems incomplete, requesting more content...");
+                complete = false;
+              } else {
+                complete = true;
+              }
 
-          // Check for truncation and "MoreContent" flag
-          if (response.text.toString().endsWith(",") || 
-              response.text.toString().endsWith(" ")) {
-            print("Response seems incomplete, requesting more content...");
-            complete = false;
-          } else {
-            complete = true;
+              // Add to phases if full response
+              // if (fullResponse.isNotEmpty) {
+              //   allPhases.add(parsedResponse['phases']);
+              // }
+
+              // Check if there are more phases to fetch
+              morePhases = parsedResponse['MoreContent'] == "True";
+              if (!morePhases) {
+                break;
+              }
+              setState(() {
+                phaseIndex++;
+              });
+            }
           }
 
-          // Add to phases if full response
-          // if (fullResponse.isNotEmpty) {
-          //   allPhases.add(parsedResponse['phases']);
-          // }
-
-          // Check if there are more phases to fetch
-          morePhases = parsedResponse['MoreContent'] == "True";
-           if (!morePhases) {
-            break;
-          }
-          setState(() {
-          phaseIndex++;  
-          });
-          
+          // Combine and use allPhases for the complete roadmap
+          // print("All Phases: $allPhases");
         }
+<<<<<<< HEAD
         // _showResults(allPhases);
+=======
+        _showResults(allPhases);
+>>>>>>> 664502b9bbb9fb1e156944d08b4817e0cb70b4b7
       }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+        // _showResults(allPhases);
+      });
 
+<<<<<<< HEAD
       // Combine and use allPhases for the complete roadmap
       // print("All Phases: $allPhases");
       // _showResults(allPhases);
@@ -359,124 +439,16 @@ Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
     setState(() {
       isLoading = false;
     });
+=======
+      print("Error: $e");
+      Get.snackbar("Error", "An unexpected error occurred. Please try again.");
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+>>>>>>> 664502b9bbb9fb1e156944d08b4817e0cb70b4b7
   }
-}
-
-// Future<void> _calculateFinancialHealthScore(
-//     Map<String, String> prompt) async {
-
-//   setState(() {
-//     isLoading = true;
-//   });
-
-//   try {
-//     print("Enter initialize Model...");
-//     final model = await initializeModel();
-//     print('After model initialization...');
-
-//     if (model != null) {
-//       List<dynamic> allPhases = [];
-//       bool morePhases = true;
-//       int phaseIndex = 1; // Start with phase 1
-
-//       while (morePhases) {
-//         final content = [
-//           Content.text(
-//               "${prompt.toString()} Phase $phaseIndex")
-//         ];
-        
-//         final response = await model.generateContent(content);
-
-//         try {
-//           final parsedResponse = jsonDecode(response.text.toString());
-//           print("Parsed response: $parsedResponse");
-
-//           if (parsedResponse['phases'] != null) {
-//             allPhases.add(parsedResponse['phases']); // Add the current phase
-//           }
-
-//           // Check if more phases are to be generated
-//           morePhases = parsedResponse['MoreContent'] == "True";
-//           phaseIndex++; // Increment phase index for the next API call
-
-//         } catch (jsonError) {
-//           print("JSON Parsing Error: $jsonError");
-//           Get.snackbar("Error", "Failed to parse response. Please try again.");
-//           morePhases = false; // Exit the loop if parsing fails
-//         }
-//       }
-
-//       // Now `allPhases` contains all the phases combined from multiple responses
-//       print("All Phases: $allPhases");
-
-//       // Further processing of `allPhases`...
-//       // For example, you can now show the full roadmap using _showResults()
-
-//     }
-//   } catch (e) {
-//     setState(() {
-//       isLoading = false;
-//     });
-
-//     print("Error: $e");
-//     Get.snackbar("Error", "An unexpected error occurred. Please try again.");
-//   } finally {
-//     setState(() {
-//       isLoading = false;
-//     });
-//   }
-// }
-
-
-  // Future<void> _calculateFinancialHealthScore(
-  //     Map<String, String> prompt) async {
-    
-  //   setState(() {
-  //     isLoading = true;
-  //   });
-
-  //   try {
-  //     print("enter initialize Model......");
-  //     final model = await initializeModel();
-  //     print('after modle initialize......');
-
-  //     if (model != null) {
-  //       final content = [Content.text((prompt.toString()))];
-  //       final response = await model.generateContent(content);
-
-  //       final parsedResponse = jsonDecode(response.text.toString());
-  //       // final responseType = parsedResponse['type'];
-  //       // final responseContent = parsedResponse['content'];
-  //       // // things inside content..
-  //       // final finance_score = responseContent['finance-score'];
-  //       // final category_marks = responseContent['category-marks'];
-
-  //       // final recommendation_text = responseContent['recommendation'];
-  //       // // recommendation:
-
-  //       print("response from gemini.....");
-  //       // print("Raw response text: ${response.text.toString()}");
-  //       // print(responseType);
-  //       // print(responseContent);
-  //       // print(finance_score);
-  //       // print(category_marks);
-  //       // print(recommendation_text);
-  //       print(parsedResponse);
-
-  //       // setState(() {
-  //       //   isLoading = false;
-  //       //   _showResults(
-  //       //       finance_score, recommendation_text.toString(), category_marks);
-  //       // });
-  //     }
-  //   } catch (e) {
-  //     setState(() {
-  //       isLoading = false;
-  //     });
-
-  //     print("error VVVVVV: $e");
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -485,12 +457,14 @@ Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
       appBar: AppBar(
         title: Center(
           child: SizedBox(
-            child: Text('AI Financial Roadmap Generator',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: const Color.fromARGB(210, 5, 242, 155),
-                ),),
+            child: Text(
+              'AI Financial Roadmap Generator',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: const Color.fromARGB(210, 5, 242, 155),
+              ),
+            ),
           ),
         ),
         backgroundColor: Colors.black87,
@@ -588,7 +562,7 @@ Future<void> _calculateFinancialHealthScore(Map<String, String> prompt) async {
             ),
     );
   }
-}
+
 
 
 void _generatePdf(List<dynamic> phases) async {
