@@ -42,34 +42,3 @@ Future<void> saveNotification
         }
 }
 
-// Update
-
-// Future<void> updateNotification
-//   (
-//     String userid,
-//     String title,
-//     String description,
-//     DateTime dateTime,
-//     // DateTime createdAt,
-//     // DateTime updateAt,
-//     String notifiactionType,
-//     // bool isRead
-//     ) async 
-//     {
-//     final notificationId = 
-//     {
-//         'title': title,
-//         'description': description,
-//         'date': Timestamp.fromDate(dateTime),
-//         // 'createdAt': Timestamp.now(),
-//         // 'isRead': false,
-//         'notificationType': notifiactionType,
-//       };
-//       if(title!=Null && description!=Null)
-//         {
-//         await FirebaseFirestore.instance
-//             .collection('Users')
-//             .doc(userid)
-//             .collection('Custom_Notification').UpdateAt(notificationId);
-//         }
-// }

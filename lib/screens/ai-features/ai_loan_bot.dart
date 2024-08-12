@@ -1,3 +1,4 @@
+import 'package:finsnap/keys.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:finsnap/models/custom_chat_quiz_model.dart';
@@ -66,7 +67,7 @@ class _loanBotState extends State<loanBot> {
   }
 
   final user = FirebaseAuth.instance.currentUser;
-  final apiKey = 'AIzaSyDdKgK8wpfxgAeHnOgpjSV_5VC5nBCP_rU';
+  final apiKey = KeysFinsnap().apiKey;
   TextEditingController promptController = TextEditingController();
   bool isLoading = false;
 
@@ -274,10 +275,7 @@ class _loanBotState extends State<loanBot> {
                 ),
               ),
             const SizedBox(height: 10),
-            // Text(
-            //   "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year} ${DateTime.now().hour}:${DateTime.now().minute} ",
-            //   style: TextStyle(color: Colors.white),
-            // ),
+            
             Expanded(
               child: Column(
                 children: [
@@ -286,15 +284,7 @@ class _loanBotState extends State<loanBot> {
                       scrollController: _scrollController,
                       currentUser: ChatUser(id: user?.uid ?? ''),
                       customChatMessages: customChatMessages,
-                      // onSend: (CustomChatMessage message) {
-                      //   // if (message.options == null) {
-                      //     get_text_gemini(message.message);
-                      //   // }
-                      //   // setState(() {
-                      //   //   print(message);
-                      //   //   customChatMessages.add(message);
-                      //   // });
-                      // },
+                  
                       onSend: (message) {
                         if (message.options == null) {
                           get_text_gemini(message.message);

@@ -1,18 +1,4 @@
-// import 'package:flutter/material.dart';
 
-// class IndexPage extends StatefulWidget {
-//   const IndexPage({super.key});
-
-//   @override
-//   State<IndexPage> createState() => _IndexPageState();
-// }
-
-// class _IndexPageState extends State<IndexPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Text("hi hello");
-//   }
-// }
 
 import 'package:finsnap/screens/chatbot.dart';
 import 'package:finsnap/screens/remainder.dart';
@@ -20,7 +6,7 @@ import 'package:finsnap/widgets/chatbot/chatbot-sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:finsnap/widgets/indexpage/index_ui_widgets.dart';
+// import 'package:finsnap/widgets/indexpage/index_ui_widgets.dart';
 
 class IndexPage extends StatelessWidget {
   void _onItemTapped(int index) {
@@ -69,9 +55,9 @@ class IndexPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BuildSearchbar(),
-              Divider(),
-              SizedBox(height: 20),
+              // BuildSearchbar(),
+              // Divider(),
+              SizedBox(height: 10),
               _buildSectionTitle('Ai Features ✨'),
               SizedBox(height: 20),
               _buildTransferOptions(),
@@ -90,7 +76,7 @@ class IndexPage extends StatelessWidget {
               SizedBox(height: 20),
 
               //
-              _buildSectionTitle('Recent transfers'),
+              _buildSectionTitle('Talk to Finance Experts'),
               SizedBox(height: 8),
               _buildRecentTransfers(),
             ],
@@ -305,11 +291,11 @@ class IndexPage extends StatelessWidget {
 
   Widget _buildRecentTransfers() {
     final List<Map<String, dynamic>> transfers = [
-      {'name': 'Henry', 'image': 'assets/images/henry.png'},
-      {'name': 'Lora', 'image': 'assets/images/lora.png'},
-      {'name': 'John', 'image': 'assets/images/john.png'},
-      {'name': 'Meg', 'image': 'assets/images/meg.png'},
-      {'name': 'Lee', 'image': 'assets/images/lee.png'},
+      {'name': 'John', 'image': 'assets/person1.jpg'},
+      {'name': 'Lora', 'image': 'assets/person4.jpg'},
+      {'name': 'Waren', 'image': 'assets/person2.jpg'},
+      {'name': 'Smith', 'image': 'assets/person3.jpg'},
+      {'name': 'Mary', 'image': 'assets/person5.jpg'},
     ];
 
     return SingleChildScrollView(

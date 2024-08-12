@@ -49,9 +49,7 @@ void main() async {
     // await dotenv.load(fileName: ".env");
 
    
-    // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-    // final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-    // Run the app
+    
 
   runApp( MyApp());
 }
@@ -65,6 +63,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
@@ -83,14 +82,9 @@ class MyApp extends StatelessWidget {
       GetPage(name: '//loanbot', page: () => loanBot()),
       GetPage(name: '//creditbot', page: () => creditBot()),
 
-      // module_one
-      // '/updates-faq': (context) => UpdateFAQScreen(),
-      // GetPage(name: '/toAccount', page: () => ToAccountPage()),
-      // GetPage(name: '/bankToBank', page: () => BankToBankPage()),
+     
     ],
-      // routes: {
-      //   RemainderPage.route : (context) =>const RemainderPage(),
-      // },
+      
     );
   }
 }

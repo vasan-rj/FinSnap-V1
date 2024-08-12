@@ -47,34 +47,7 @@ class AppDrawer extends StatelessWidget {
               ],
             ),
           ),
-          // ListTile(
-          //   leading: Icon(Icons.chat),
-          //   title: Text('New chat'),
-          //   onTap: () {
-          //     // Handle new chat action
-          //   },
-          // ),
-          // ListTile(
-          //   leading: Icon(Icons.delete),
-          //   title: Text('Clear conversation'),
-          //   onTap: () {
-          //     // Handle clear conversation action
-          //   },
-          // ),
-          // ListTile(
-          //   leading: Icon(Icons.favorite),
-          //   title: Text('Favorites'),
-          //   onTap: () {
-          //     // Handle favorites action
-          //   },
-          // ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Profile'),
-            onTap: () {
-              // Handle profile action
-            },
-          ),
+          
           ListTile(
             leading: Icon(Icons.info),
             title: Text('Update & FAQ'),
@@ -83,13 +56,7 @@ class AppDrawer extends StatelessWidget {
 
             },
           ),
-          // ListTile(
-          //   leading: Icon(Icons.nightlight_round),
-          //   title: Text('Dark mode'),
-          //   onTap: () {
-          //     // Handle dark mode action
-          //   },
-          // ),
+         
           ListTile(
             leading: Icon(Icons.upgrade),
             title: Text('Contact-Us'),

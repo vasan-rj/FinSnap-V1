@@ -1,4 +1,5 @@
 import 'package:dash_chat_2/dash_chat_2.dart';
+import 'package:finsnap/keys.dart';
 import 'package:finsnap/models/custom_chat_quiz_model.dart';
 import 'package:finsnap/widgets/chatbot/chat_interface.dart';
 import 'package:finsnap/widgets/chatbot/chatbot-sidebar.dart';
@@ -73,7 +74,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   final user = FirebaseAuth.instance.currentUser;
-  final apiKey = 'AIzaSyDdKgK8wpfxgAeHnOgpjSV_5VC5nBCP_rU';
+    final apiKey = KeysFinsnap().apiKey;
   TextEditingController promptController = TextEditingController();
   bool isLoading = false;
 

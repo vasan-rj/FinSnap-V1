@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:dash_chat_2/dash_chat_2.dart';
+import 'package:finsnap/keys.dart';
 import 'package:finsnap/models/custom_chat_quiz_model.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-final apiKey = 'AIzaSyDdKgK8wpfxgAeHnOgpjSV_5VC5nBCP_rU';
+  final apiKey = KeysFinsnap().apiKey;
 
 initializeModel() async {
     try {

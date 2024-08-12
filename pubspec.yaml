@@ -99,6 +99,12 @@ flutter:
     - assets/module_1.png
     - assets/Revenue.png
     - assets/credit_card.png
+    - assets/person1.jpg
+    - assets/person2.jpg
+    - assets/person3.jpg
+    - assets/person4.jpg
+    - assets/person5.jpg
+    - assets/person6.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

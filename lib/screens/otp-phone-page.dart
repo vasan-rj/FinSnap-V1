@@ -99,27 +99,3 @@ class _otpPageState extends State<otpPage> {
 }
 
 
-// Widget verifyotp()
-// {
-//   return Scaffold();
-// }
-
-// Widget textcode()
-// {
-//   return Center(
-//     child:Padding(
-//       padding:const EdgeInsets.all(6),
-//       child:Pinput(
-//         length: 6,
-//         onChanged: (value) 
-//         {
-//           setState(() {
-//             code = value;
-//           });
-          
-//         },
-//       )
-//       ),
-//   );
-// }
-

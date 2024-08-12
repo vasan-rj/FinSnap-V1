@@ -63,32 +63,7 @@ class CustomChatBubble extends StatelessWidget {
               );
             }).toList(),
           ),
-          // Column(
-          // crossAxisAlignment: CrossAxisAlignment.start, 
-          //   children: [
-          //     Wrap( 
-          //       spacing: 8.0,
-          //       children: message.options!.map((option) {
-          //         return ElevatedButton(
-          //           style: ElevatedButton.styleFrom(
-          //             backgroundColor: Colors.blue,
-          //             foregroundColor: Colors.white,
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(10),
-          //             ),
-          //             // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          //             textStyle: TextStyle(fontSize: 14),
-              
-          //           ),
-          //           onPressed: () => onOptionSelected(option),
-                    
-          //           child: Text(option),
-          //         );
-          //       }).toList(),
-          //     ),
-            
-          //   ],
-          // ),
+          
       ],
     );
   }

@@ -551,57 +551,6 @@ class _RemainderPageState extends State<RemainderPage> {
     tz.initializeTimeZones();
     
   }
-  // Push Notification Initialization and FCM Genaeration
-  //  void initState() {
-  //   super.initState();
-  //   FirebaseMessaging.instance.subscribeToTopic('notifications');
-  //   PushNotification();
-
-  //   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-  //     RemoteNotification? notification = message.notification;
-  //     AndroidNotification? android = message.notification?.android;
-
-  //     if (notification != null && android != null) {
-  //       showDialog(
-  //         context: context,
-  //         builder: (_) {
-  //           return AlertDialog(
-  //             title: Text(notification.title!),
-  //             content: SingleChildScrollView(
-  //               child: Column(
-  //                 crossAxisAlignment: CrossAxisAlignment.start,
-  //                 children: [Text(notification.body!)],
-  //               ),
-  //             ),
-  //           );
-  //         },
-  //       );
-  //     }
-  //   });
-
-  //   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-  //     print('A new onMessageOpenedApp event was published!');
-  //     RemoteNotification? notification = message.notification;
-  //     AndroidNotification? android = message.notification?.android;
-  //     if (notification != null && android != null) {
-  //       showDialog(
-  //         context: context,
-  //         builder: (_) {
-  //           return AlertDialog(
-  //             title: Text(notification.title!),
-  //             content: SingleChildScrollView(
-  //               child: Column(
-  //                 crossAxisAlignment: CrossAxisAlignment.start,
-  //                 children: [Text(notification.body!)],
-  //               ),
-  //             ),
-  //           );
-  //         },
-  //       );
-  //     }
-  //   });
-  // }
-  // end........
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
