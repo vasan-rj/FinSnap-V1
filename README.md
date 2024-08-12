@@ -28,7 +28,7 @@ FinSnap is an AI-powered financial app designed to help users understand and opt
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/vasan-rj/FinSnap-V1.git
+    git clone https://github.com/vasan-rj/FinSnap-V1/tree/master
     cd finsnap
     ```
 
