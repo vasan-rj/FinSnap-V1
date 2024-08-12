@@ -1,4 +1,7 @@
 // import 'package:finsnap/wrapper.dart';
+import 'package:finsnap/screens/ai-features/ai_credit_bot.dart';
+import 'package:finsnap/screens/ai-features/ai_loan_bot.dart';
+import 'package:finsnap/screens/ai-features/ai_tax_bot.dart';
 import 'package:finsnap/screens/ai-features/health_score.dart';
 import 'package:finsnap/screens/ai-features/roadmap-generator.dart';
 import 'package:finsnap/screens/appdrawer/contact-us.dart';
@@ -7,6 +10,7 @@ import 'package:finsnap/screens/learning-module/module1.dart';
 import 'package:finsnap/screens/testing.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:finsnap/screens/fingerprint.dart';
 import 'package:finsnap/utils/theme/themedata.dart';
@@ -17,9 +21,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:finsnap/permission/notification_permission.dart';
 
 
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 import 'package:finsnap/services/firebase_messaging_setup.dart';
@@ -45,6 +46,7 @@ void main() async {
     await requestScheduleExactAlarmPermission();
      
      setupFirebaseMessagingx();
+    // await dotenv.load(fileName: ".env");
 
    
     // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -77,6 +79,9 @@ class MyApp extends StatelessWidget {
       GetPage(name: '//updates-faq', page: () => UpdateFAQScreen()),
       GetPage(name: '//contact-us', page: () => ContactUsScreen()),
       GetPage(name: '//module-one', page: () => module_one()),
+      GetPage(name: '//taxbot', page: () => taxBot()),
+      GetPage(name: '//loanbot', page: () => loanBot()),
+      GetPage(name: '//creditbot', page: () => creditBot()),
 
       // module_one
       // '/updates-faq': (context) => UpdateFAQScreen(),

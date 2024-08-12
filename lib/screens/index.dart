@@ -70,22 +70,29 @@ class IndexPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               BuildSearchbar(),
-              SizedBox(height: 20),
-              _buildSectionTitle('Finance Modules 📈'),
-              SizedBox(height: 20),
-              _buildLearningModule(),
+              Divider(),
               SizedBox(height: 20),
               _buildSectionTitle('Ai Features ✨'),
               SizedBox(height: 20),
               _buildTransferOptions(),
               SizedBox(height: 20),
+              Divider(),
+              SizedBox(height: 20),
+              _buildSectionTitle('Finance Modules 📈'),
+              SizedBox(height: 10),
+              _buildLearningModule(),
+
+              // SizedBox(height: 20),
+              SizedBox(height: 16),
+              _buildSectionTitle('Custom Ai Bots 💳 '),
+              SizedBox(height: 8),
+              _buildPaymentOptions(),
+              SizedBox(height: 20),
+
+              //
               _buildSectionTitle('Recent transfers'),
               SizedBox(height: 8),
               _buildRecentTransfers(),
-              SizedBox(height: 16),
-              _buildSectionTitle('Payment options'),
-              SizedBox(height: 8),
-              _buildPaymentOptions(),
             ],
           ),
         ),
@@ -147,6 +154,11 @@ class IndexPage extends StatelessWidget {
         'route': '/roadmap'
       },
       // {
+      //   'icon': Icons.person_4_outlined,
+      //   'label': 'AI Finance Score',
+      //   'route': '/healthscore'
+      // },
+      // {
       //   'icon': Icons.account_balance,
       //   'label': 'Bank to bank',
       //   'route': '/healthscore'
@@ -163,10 +175,11 @@ class IndexPage extends StatelessWidget {
             decoration: BoxDecoration(
               color: Color(0xFF2A2A2A),
               borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Color.fromARGB(111, 5, 242, 155)),
+              // border: Border.all(color:Color.fromARGB(148, 158, 158, 158)),
             ),
             child: Column(
               children: [
-                
                 // SizedBox(height: 8),
                 TextButton(
                   onPressed: () {
@@ -175,8 +188,9 @@ class IndexPage extends StatelessWidget {
                   },
                   child: Column(
                     children: [
-                      Icon(option['icon'], color: const Color.fromARGB(210, 5, 242, 155)),
-                       SizedBox(height: 8),
+                      Icon(option['icon'],
+                          color: const Color.fromARGB(210, 5, 242, 155)),
+                      SizedBox(height: 8),
                       Text(
                         option['label'],
                         textAlign: TextAlign.center,
@@ -194,83 +208,100 @@ class IndexPage extends StatelessWidget {
   }
 
   Widget _buildLearningModule() {
-  final List<Map<String, dynamic>> options = [
-    {
-      'image': "./assets/signup-asset.png", // Replace with actual asset path
-      'lessons': 5,
-      'label': 'AI Finance Score',
-      'route': '/module-one'
-    },
-    {
-      'image': 'assets/images/custom_roadmap.png', // Replace with actual asset path
-      'lessons': 8,
-      'label': 'AI Custom Roadmap',
-      'route': '/roadmap'
-    },
-  ];
+    final List<Map<String, dynamic>> options = [
+      //     - assets/module_1.png
 
-  return SingleChildScrollView(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: options.map((option) {
-        return Container(
-          margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-          padding: EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
-            color: Color(0xFF2A2A2A),
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(
-                option['image'],
-                height: 100.0,
-                width: double.infinity,
-                fit: BoxFit.fill,
-              ),
-              SizedBox(height: 8.0),
-              Text(
-                '${option['lessons']} Lessons',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.0,
+      {
+        'image': "./assets/Revenue.png", // Replace with actual asset path
+        'lessons': 7,
+        'label': 'Early Financial Independence',
+        'route': '/module-one',
+        'button': 'Start Module'
+      },
+      {
+        'image': "./assets/module_1.png", // Replace with actual asset path
+        'lessons': 14,
+        'label': 'Mastering Stock Market',
+        'route': '',
+        'button': 'Coming Soon..'
+      },
+      {
+        'image': "./assets/credit_card.png", // Replace with actual asset path
+        'lessons': 6,
+        'label': 'Secrets Of Tax Saving',
+        'route': '',
+        'button': 'Coming Soon..'
+      },
+    ];
+
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: options.map((option) {
+          return Container(
+            margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+            padding: EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Color(0xFF2A2A2A),
+              borderRadius: BorderRadius.circular(10.0),
+              border: Border.all(color: Color.fromARGB(82, 5, 242, 155)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  option['image'],
+                  height: 165.0,
+                  // height: double.infinity,
+                  width: double.infinity,
+                  // fit: BoxFit.fill,
+                  fit: BoxFit.fill,
                 ),
-              ),
-              SizedBox(height: 4.0),
-              Text(
-                option['label'],
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 12.0),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    print("clik module 1");
-                    Get.toNamed(option['route']);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(210, 5, 242, 155),
-                    foregroundColor: Colors.black,
-                    padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
+                SizedBox(height: 10.0),
+
+                Text(
+                  option['label'],
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                  child: Text('Get Started'),
                 ),
-              ),
-            ],
-          ),
-        );
-      }).toList(),
-    ),
-  );
-}
+                SizedBox(height: 4.0),
+                Text(
+                  '${option['lessons']} Lessons',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16.0,
+                  ),
+                ),
+                // SizedBox(height: 4.0),
+                SizedBox(height: 12.0),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      print("clik module 1");
+                      Get.toNamed(option['route']);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(210, 5, 242, 155),
+                      foregroundColor: Colors.black,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 24.0, vertical: 12.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    child: Text(option['button']),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
 
   Widget _buildRecentTransfers() {
     final List<Map<String, dynamic>> transfers = [
@@ -292,6 +323,7 @@ class IndexPage extends StatelessWidget {
                 CircleAvatar(
                   backgroundImage: AssetImage(transfer['image']),
                   radius: 30,
+                  backgroundColor: Color(0xFF2A2A2A),
                 ),
                 SizedBox(height: 8),
                 Text(
@@ -308,33 +340,48 @@ class IndexPage extends StatelessWidget {
 
   Widget _buildPaymentOptions() {
     final List<Map<String, dynamic>> options = [
-      {'icon': Icons.directions_bus, 'label': 'Transport'},
-      {'icon': Icons.tv, 'label': 'Internet & TV'},
-      {'icon': Icons.phone, 'label': 'Phone'},
-      {'icon': Icons.games, 'label': 'Games'},
+      {'icon': Icons.edit_document, 'label': 'Ai Tax Bot', 'route': '/taxbot'},
+      {
+        'icon': Icons.attach_money_outlined,
+        'label': 'Ai Loan Bot',
+        'route': '/loanbot'
+      },
+      {
+        'icon': Icons.credit_score_sharp,
+        'label': 'Ai Credit Bot',
+        'route': '/creditbot'
+      },
+      // {'icon': Icons.games, 'label': 'Games'},
     ];
 
     return Wrap(
       spacing: 8,
-      runSpacing: 8,
+      // runSpacing: 8,
       children: options.map((option) {
-        return Container(
-          // width: MediaQuery.of(context).size.width / 2 - 24,
-          padding: EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Color(0xFF2A2A2A),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            children: [
-              Icon(option['icon'], color: Colors.white),
-              SizedBox(height: 8),
-              Text(
-                option['label'],
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white),
-              ),
-            ],
+        return TextButton(
+          onPressed: () {
+            print("clikeee");
+            Get.toNamed(option['route']);
+          },
+          child: Container(
+            // width: MediaQuery.of(context).size.width / 2 - 24,
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Color(0xFF2A2A2A),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              children: [
+                // Icon(option['icon'], color:),
+                Icon(option['icon'], color: Color.fromARGB(210, 5, 242, 155)),
+                SizedBox(height: 8),
+                Text(
+                  option['label'],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
           ),
         );
       }).toList(),

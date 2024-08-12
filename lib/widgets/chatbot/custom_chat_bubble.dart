@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:finsnap/models/custom_chat_quiz_model.dart';
 
 

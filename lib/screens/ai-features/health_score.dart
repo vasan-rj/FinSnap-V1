@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:percent_indicator/percent_indicator.dart';
 
 class HealthScorePage extends StatefulWidget {
@@ -60,7 +59,9 @@ class _HealthScorePageState extends State<HealthScorePage> {
                   lineWidth: 10.0,
                   percent: score * 0.01,
                   center: Text("${score}%"),
-                  progressColor: Color.fromARGB(128, 5, 242, 155),
+                  progressColor: Color.fromARGB(210, 5, 242, 155),
+                  //                     backgroundColor: const Color.fromARGB(210, 5, 242, 155),
+
                 ),
               ),
               SizedBox(height: 20.0),
@@ -133,7 +134,8 @@ class _HealthScorePageState extends State<HealthScorePage> {
               TextButton(
                 onPressed: () =>Get.to(IndexPage()),
                 style: TextButton.styleFrom(
-                  backgroundColor: Color.fromARGB(164, 5, 242, 155),
+                  backgroundColor:const Color.fromARGB(210, 5, 242, 155),
+                  foregroundColor: Colors.white,
                   // primary: Colors.white,  // Text color
                   minimumSize: Size(100, 40), // Width and height
                   shape: RoundedRectangleBorder(
@@ -148,7 +150,8 @@ class _HealthScorePageState extends State<HealthScorePage> {
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 style: TextButton.styleFrom(
-                  backgroundColor: Color.fromARGB(164, 5, 242, 155),
+                  backgroundColor: const Color.fromARGB(210, 5, 242, 155),
+                  foregroundColor: Colors.white,
                   // primary: Colors.white,  // Text color
                   minimumSize: Size(100, 40), // Width and height
                   shape: RoundedRectangleBorder(

@@ -96,6 +96,9 @@ flutter:
     - assets/forget-password-asset.png
     - assets/signup-asset.png
     - assets/email-verification.png
+    - assets/module_1.png
+    - assets/Revenue.png
+    - assets/credit_card.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,7 +1,6 @@
 import 'package:finsnap/screens/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:finsnap/screens/chatbot.dart';
 import 'package:finsnap/screens/login.dart';
 import 'package:finsnap/screens/email-verify.dart';
 // import 'package:finsnap/phone-verify.dart';

@@ -1,12 +1,5 @@
-import 'package:finsnap/ai-model-config/health-score-model.dart';
 import 'package:finsnap/data/module-one.dart';
-import 'package:finsnap/screens/index.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:percent_indicator/percent_indicator.dart';
 
 class module_one extends StatefulWidget {
   const module_one({super.key});
@@ -61,7 +54,7 @@ class _module_oneState extends State<module_one> {
       appBar: AppBar(
         title: Center(
           child: SizedBox(
-            child: Text('Early Financial Independence',
+            child: Text('Finance Modules 🧾',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -85,7 +78,7 @@ class _module_oneState extends State<module_one> {
                    SizedBox(height: 16.0),
                      Center(
                       child: Text(
-                        currentQuestion["lesson"],
+                        currentQuestion["module"],
                         style: TextStyle(
                             fontSize: 18.0, fontWeight: FontWeight.bold),
                       ),

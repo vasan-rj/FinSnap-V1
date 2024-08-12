@@ -1,7 +1,6 @@
 // app_drawer.dart
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:finsnap/screens/chatbot.dart';
 
 class AppDrawer extends StatelessWidget {

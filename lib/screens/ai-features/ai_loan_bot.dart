@@ -1,16 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:finsnap/models/custom_chat_quiz_model.dart';
+import 'package:finsnap/screens/chatbot.dart';
+import 'package:finsnap/screens/remainder.dart';
 import 'package:finsnap/widgets/chatbot/chat_interface.dart';
-import 'package:finsnap/widgets/chatbot/chatbot-sidebar.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
-// import 'chat_interface.dart';
-// import 'chatbot-sidebar.dart';
-import 'remainder.dart';
 import 'package:finsnap/screens/index.dart';
 
 signout() async {
@@ -23,25 +21,20 @@ signout() async {
   }
 }
 
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+
+class loanBot extends StatefulWidget {
+  const loanBot({super.key});
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  State<loanBot> createState() => _loanBotState();
 }
 
-class _HomepageState extends State<Homepage> {
+class _loanBotState extends State<loanBot> {
+
   int _selectedIndex = 1;
   List<CustomChatMessage> customChatMessages = [];
   final ScrollController _scrollController = ScrollController();
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text('Home Page',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-    Text('AI Finance Assistant',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-    Text('Custom Remainder',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-  ];
+  
 
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -94,12 +87,11 @@ class _HomepageState extends State<Homepage> {
           responseMimeType: 'application/json',
         ),
         systemInstruction: Content.system("""
-          You are a Personal Financial Assistant for the user, your goal is to gather relevant financial information from the user to provide personalized financial recommendations and help them achieve their financial goals. 
+          You are a Personal Loan Assistant for the user, your goal is to gather relevant financial Loan information from the user to provide personalized financial recommendations and help them with loan information. 
           Do not make assumptions, ask clarifying questions if not enough information is available, only ask important and relevant questions also do not many question to the user limit the number of question to the user. 
           If you are replying, then follow type 1 response Schema, and if you are asking a question, then follow type 2 response Schema.
 
-          NOTE!: When a User asks about a Topic/Question/Concept give general information about the topic first, and then give 2 option "Give Specific Answer" and "Get General Answer" if user clicks on "Give Specific Answer" ask relevant and detailed questions to the user , follow type 2 response schema for this.
-          while responding make sure quote are being correctly closed.
+          NOTE!: When a User asks about a Topic/Question/Concept give general information about the topic first, and then give two option "Give Specific Answer" and "Give General Answer" if user clicks on "Give Specific Answer" ask relevant and detailed questions to the user , follow type 2 response schema for this.
 
           type 1 response schema:
 
@@ -238,7 +230,7 @@ class _HomepageState extends State<Homepage> {
         final trigger_msg = CustomChatMessage(
           user: ChatUser(id: 'ai', firstName: 'AI'),
           message:
-              'Hey There 👋🏽 This is Finsanp Ai Assistant. How can I help you?',
+              'Hey There 👋🏽 This is Finsanp Loan Assistant. How can I help you with Loans?',
           createdAt: DateTime.now(),
         );
         setState(() {
@@ -251,13 +243,15 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Center(
           child: SizedBox(
-            child: Text('AI Finance Assistant',
+            child: Text('AI Loan Assistant',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -267,7 +261,7 @@ class _HomepageState extends State<Homepage> {
         ),
         backgroundColor: Colors.black87,
       ),
-      drawer: AppDrawer(),
+      // drawer: AppDrawer(),
       body: SafeArea(
         child: Column(
           children: [
