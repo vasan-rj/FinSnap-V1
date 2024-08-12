@@ -13,6 +13,10 @@ import 'dart:convert';
 import 'remainder.dart';
 import 'package:finsnap/screens/index.dart';
 
+signout() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
 

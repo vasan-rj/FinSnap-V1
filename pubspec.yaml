@@ -57,17 +57,7 @@ dependencies:
   percent_indicator: ^4.2.3
   pdf: ^3.11.1
   printing: ^5.13.1
-<<<<<<< HEAD
   path_provider: ^2.1.4
-=======
-  url_launcher: ^6.3.0
-  path_provider: ^2.1.4
-  # # share_plus: ^10.0.1
-  # android_intent_plus: ^5.1.0
-  # android_intent: ^2.0.1 
-  # pspdfkit_flutter: ^3.12.0
-  # flutter_pdfview: ^1.3.2
->>>>>>> 664502b9bbb9fb1e156944d08b4817e0cb70b4b7
   # dio: ^5.5.0+1
   
 

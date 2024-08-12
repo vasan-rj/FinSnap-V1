@@ -1,6 +1,9 @@
 // import 'package:finsnap/wrapper.dart';
 import 'package:finsnap/screens/ai-features/health_score.dart';
 import 'package:finsnap/screens/ai-features/roadmap-generator.dart';
+import 'package:finsnap/screens/appdrawer/contact-us.dart';
+import 'package:finsnap/screens/appdrawer/updates_faq.dart';
+import 'package:finsnap/screens/learning-module/module1.dart';
 import 'package:finsnap/screens/testing.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +74,12 @@ class MyApp extends StatelessWidget {
       getPages: [
       GetPage(name: '/healthscore', page: () => HealthScorePage()),
       GetPage(name: '/roadmap', page: () => RoadmapGeneratorClass()),
+      GetPage(name: '//updates-faq', page: () => UpdateFAQScreen()),
+      GetPage(name: '//contact-us', page: () => ContactUsScreen()),
+      GetPage(name: '//module-one', page: () => module_one()),
+
+      // module_one
+      // '/updates-faq': (context) => UpdateFAQScreen(),
       // GetPage(name: '/toAccount', page: () => ToAccountPage()),
       // GetPage(name: '/bankToBank', page: () => BankToBankPage()),
     ],

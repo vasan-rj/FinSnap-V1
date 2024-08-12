@@ -71,14 +71,14 @@ class IndexPage extends StatelessWidget {
             children: [
               BuildSearchbar(),
               SizedBox(height: 20),
-              _buildSectionTitle('Favorites'),
-              SizedBox(height: 8),
-              _buildFavoriteIcons(),
-              SizedBox(height: 16),
-              _buildSectionTitle('AI Features ✨'),
-              SizedBox(height: 16),
+              _buildSectionTitle('Finance Modules 📈'),
+              SizedBox(height: 20),
+              _buildLearningModule(),
+              SizedBox(height: 20),
+              _buildSectionTitle('Ai Features ✨'),
+              SizedBox(height: 20),
               _buildTransferOptions(),
-              SizedBox(height: 16),
+              SizedBox(height: 20),
               _buildSectionTitle('Recent transfers'),
               SizedBox(height: 8),
               _buildRecentTransfers(),
@@ -192,6 +192,85 @@ class IndexPage extends StatelessWidget {
       }).toList(),
     );
   }
+
+  Widget _buildLearningModule() {
+  final List<Map<String, dynamic>> options = [
+    {
+      'image': "./assets/signup-asset.png", // Replace with actual asset path
+      'lessons': 5,
+      'label': 'AI Finance Score',
+      'route': '/module-one'
+    },
+    {
+      'image': 'assets/images/custom_roadmap.png', // Replace with actual asset path
+      'lessons': 8,
+      'label': 'AI Custom Roadmap',
+      'route': '/roadmap'
+    },
+  ];
+
+  return SingleChildScrollView(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: options.map((option) {
+        return Container(
+          margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+          padding: EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+            color: Color(0xFF2A2A2A),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(
+                option['image'],
+                height: 100.0,
+                width: double.infinity,
+                fit: BoxFit.fill,
+              ),
+              SizedBox(height: 8.0),
+              Text(
+                '${option['lessons']} Lessons',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                ),
+              ),
+              SizedBox(height: 4.0),
+              Text(
+                option['label'],
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 12.0),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    print("clik module 1");
+                    Get.toNamed(option['route']);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(210, 5, 242, 155),
+                    foregroundColor: Colors.black,
+                    padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                  child: Text('Get Started'),
+                ),
+              ),
+            ],
+          ),
+        );
+      }).toList(),
+    ),
+  );
+}
 
   Widget _buildRecentTransfers() {
     final List<Map<String, dynamic>> transfers = [

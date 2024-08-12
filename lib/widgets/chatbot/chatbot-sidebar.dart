@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:finsnap/screens/chatbot.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -17,25 +18,43 @@ class AppDrawer extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Text(
-                  'Drawer Header',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),
+                Row(
+                  children: [
+                    SizedBox(width: 8),
+                    Text(
+                      'Settings',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    Icon(
+                      Icons.settings,
+                      size: 25,
+                      color: Colors.white,
+                    ),
+                  ],
                 ),
+                // SizedBox(height: 16),
+                // Text(
+                //   'Settings',
+                //   style: TextStyle(
+                //     color: Colors.white,
+                //     fontSize: 24,
+                //   ),
+                // ),
                 Divider(),
               ],
             ),
-            
           ),
-          ListTile(
-            leading: Icon(Icons.chat),
-            title: Text('New chat'),
-            onTap: () {
-              // Handle new chat action
-            },
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.chat),
+          //   title: Text('New chat'),
+          //   onTap: () {
+          //     // Handle new chat action
+          //   },
+          // ),
           // ListTile(
           //   leading: Icon(Icons.delete),
           //   title: Text('Clear conversation'),
@@ -61,7 +80,8 @@ class AppDrawer extends StatelessWidget {
             leading: Icon(Icons.info),
             title: Text('Update & FAQ'),
             onTap: () {
-              // Handle update & FAQ action
+             Navigator.pushNamed(context,'/updates-faq');
+
             },
           ),
           // ListTile(
@@ -75,9 +95,21 @@ class AppDrawer extends StatelessWidget {
             leading: Icon(Icons.upgrade),
             title: Text('Contact-Us'),
             onTap: () {
-              // Handle upgrade action
+                Navigator.pushNamed(context,'/contact-us');
             },
           ),
+
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text('Logout'),
+            onTap: () {
+           signout();
+
+            },
+          ),
+
+
+
         ],
       ),
     );
