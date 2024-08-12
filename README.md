@@ -3,16 +3,16 @@
 <img src="readme-assets/logo.jpeg" alt="FinSnap Logo" width="100" height="100">
 
 
-FinSnap is an AI-powered financial health app designed to help users understand and improve their financial well-being. By analyzing spending habits, saving patterns, investments, and debt levels, FinSnap provides a personalized financial health score along with actionable recommendations.
+FinSnap is an AI-powered financial app designed to help users understand and optimize their personal finance and investments.
 
 ## 🚀 Features
 
-- **Personalized Financial Health Score**: Calculate your financial health score based on your spending, savings, investments, and debts.
-- **Personalized AI Roadmap generator**: Get your personalized AI financial Roadmap based on user's info.
-- **AI-Driven Recommendations**: Receive customized recommendations to improve your financial habits and overall financial health.
-- **Interactive Quiz**: Engage with a series of questions designed to assess various aspects of your financial life.
-- **Custom Notifications**: Stay informed with real-time updates and alerts tailored to your financial interests and goals.
-- **Interactive Chat Interface**: Engage with FinSnap's AI through an intuitive chat interface, optimized for all screen sizes.
+- **Personalized Financial Health Score Predictor and Reccomendation**: Calculate your financial health score based on your spending, savings, investments, and debts also gives Personalized Reccomendation to improve your Finance Health Score.
+- **Personalized AI Roadmap generator**: Get personalized AI financial Roadmap based on User's Info and download your Roadmap to PDF 📃.
+- **AI-Driven Recommendations**: Receive customized recommendations to improve your financial habits and overall financial health 🧑🏽‍⚕️.
+- **Learning Modules**: Learn Financial and investment topics with Finsanp's up-to date Learing Module 👨🏽‍🏫.
+- **Custom Notifications**: Stay Alert with your Scheduled Remainder and alerts tailored to your financial interests and goals 🔔.
+- **Personalized Chatbots**: Interact with FinSnap's various Custom chatbots like Loan bot ,Tax bot , Credit Bot 🤖.
 
 
 ## 🛠️ Getting Started
@@ -42,7 +42,7 @@ FinSnap is an AI-powered financial health app designed to help users understand 
 
 3. **Configure the API Key:**
 
-    Replace the placeholder in `lib/services/gemini_service.dart` with your actual Google Gemini API key.
+    Replace the placeholder in `lib/keys.dart` with your actual Google Gemini API key.
 
     ```dart
     final apiKey = 'YOUR_GOOGLE_GEMINI_API_KEY';
@@ -100,8 +100,6 @@ FinSnap is an AI-powered financial health app designed to help users understand 
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Contributors
-
 
 ## 📧 Contact
 
@@ -112,25 +110,53 @@ For any inquiries or support, please reach out via [contact.finsnap@gmail.com](m
 ```
 FinSnap/
 │
-├── lib/
-│   ├── models/
-│   │   ├── custom_chat_message.dart
-│   │   ├── custom_chat_quiz_model.dart
-│   │   └── financial_health_score_model.dart
-│   │
-│   ├── screens/
-│   │   ├── homepage.dart
-│   │   ├── chat_interface.dart
-│   │   └── quiz_screen.dart
-│   │
-│   ├── services/
-│   │   ├── gemini_service.dart
-│   │   └── financial_score_service.dart
-│   │
-│   ├── widgets/
-│   │   ├── custom_chat_bubble.dart
-│   │   ├── quiz_option_button.dart
-│   │   └── scroll_down_button.dart
+lib
+├── ai-model-config
+│   ├── health-score-model.dart
+│   └── road-map-model.dart
+├── data
+│   ├── health_score_quiz_question.dart
+│   ├── module-one.dart
+│   └── roadmap_question.dart
+├── functions
+│   └── roadmap-pdf.dart
+├── models
+│   ├── custom_chat_quiz_model.dart
+│   └── custom_notification.dart
+├── permission
+├── screens
+├── ai-features
+│   ├── ai_credit_bot.dart
+│   ├── ai_loan_bot.dart
+│   ├── ai_tax_bot.dart
+│   ├── health_score.dart
+│   └── roadmap-generator.dart
+├── appdrawer
+│   ├── contact-us.dart
+│   └── updates_faq.dart
+├── learning-module
+│   ├── module1.dart
+|----
+│   ├── chatbot.dart
+│   ├── email-verify.dart
+│   ├── fingerprint.dart
+│   ├── forgetpassword.dart
+│   ├── index.dart
+│   ├── login.dart
+│   ├── otp-phone-page.dart
+│   ├── phone-verify.dart
+│   ├── remainder.dart
+│   ├── signup.dart
+│   ├── testing.dart
+│   └── wrapper.dart
+├── services
+├── utils
+└── widgets
+|    |__chatbot
+|        |__chat_interface.dart
+|        |__chatbot-sidebar.dart
+|        |__custom_chat_bubble.dart  
+|____
 │   │
 │   ├── main.dart
 │   └── app_theme.dart
