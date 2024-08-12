@@ -62,15 +62,13 @@ FinSnap is an AI-powered financial app designed to help users understand and opt
     <img src="readme-assets/home_page.jpeg" alt="Home Screen" width="300">
   </div>
   <div >
-    <h3>Quiz Screen</h3>
-    <img src="readme-assets/quiz_screen.jpeg" alt="Quiz Screen" width="300">
   </div>
   <div >
-    <h3>Result Screen</h3>
+    <h3>Finane Health Score</h3>
     <img src="readme-assets/ai_health_score.jpeg" alt="Result Screen" width="300">
   </div>
   <div >
-    <h3>Finance Health Score Recommendation</h3>
+    <h3>Personalized Finance Roadmap</h3>
     <img src="readme-assets/roadmap.jpeg" alt="Finance Health Score Recommendation" width="300">
   </div>
   <div >
