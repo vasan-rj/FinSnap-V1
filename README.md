@@ -15,20 +15,6 @@ FinSnap is an AI-powered financial app designed to help users understand and opt
 - **Personalized Chatbots**: Interact with FinSnap's various Custom chatbots like Loan bot ,Tax bot , Credit Bot 🤖.
 
 
-# FinSnap: Personalized Financial Health App
-
-![FinSnap Logo](link-to-logo-image) <!-- Replace with the actual image link -->
-
-FinSnap is an AI-powered financial health app designed to help users understand and improve their financial well-being. By analyzing spending habits, saving patterns, investments, and debt levels, FinSnap provides a personalized financial health score along with actionable recommendations.
-
-## 🚀 Features
-
-- **Personalized Financial Health Score**: Calculate your financial health score based on your spending, savings, investments, and debts.
-- **AI-Driven Recommendations**: Receive customized recommendations to improve your financial habits and overall financial health.
-- **Interactive Quiz**: Engage with a series of questions designed to assess various aspects of your financial life.
-- **Real-time Analysis**: Get instant feedback after completing the quiz with a detailed breakdown of your financial health score.
-- **Secure & Private**: Your financial data is securely processed using the latest encryption standards.
-
 ## 🎨 App Theme & Styling
 
 FinSnap features a sleek and modern UI with a dark theme that emphasizes clarity and ease of use. The app uses a consistent color palette for a cohesive look and feel:
