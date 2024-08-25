@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # FinSnap: Your AI-Driven Financial Companion
 
 <img src="readme-assets/logo.jpeg" alt="FinSnap Logo" width="100" height="100">
@@ -15,7 +14,7 @@ FinSnap is an AI-powered financial app designed to help users understand and opt
 - **Custom Notifications**: Stay Alert with your Scheduled Remainder and alerts tailored to your financial interests and goals 🔔.
 - **Personalized Chatbots**: Interact with FinSnap's various Custom chatbots like Loan bot ,Tax bot , Credit Bot 🤖.
 
-=======
+
 # FinSnap: Personalized Financial Health App
 
 ![FinSnap Logo](link-to-logo-image) <!-- Replace with the actual image link -->
@@ -38,52 +37,41 @@ FinSnap features a sleek and modern UI with a dark theme that emphasizes clarity
 - **Accent Color**: #00FF7F (Green)
 - **Text Color**: #FFFFFF (White)
 - **Button Color**: #2A9D8F (Teal)
->>>>>>> master
+
 
 ## 🛠️ Getting Started
 
 ### Prerequisites
 
 - [Flutter](https://flutter.dev/docs/get-started/install) installed on your local machine.
-<<<<<<< HEAD
+
 - Dart SDK
 - A valid [Google Gemini API key](https://cloud.google.com/ai/gemini)
-=======
-- A valid Google Gemini API key.
->>>>>>> master
+
 
 ### Installation
 
 1. **Clone the repository:**
 
     ```bash
-<<<<<<< HEAD
-    git clone https://github.com/vasan-rj/FinSnap-V1/tree/master
-=======
-    git clone https://github.com/yourusername/finsnap.git
->>>>>>> master
+
+    git clone https://github.com/vasan-rj/FinSnap-V1.git
+
     cd finsnap
-    ```
+    '''
 
 2. **Install dependencies:**
 
-<<<<<<< HEAD
     Connect device through android emulator or physical device USB debugging.
+
     ```bash
-    
-=======
-    ```bash
->>>>>>> master
+
     flutter pub get
     ```
 
 3. **Configure the API Key:**
 
-<<<<<<< HEAD
     Replace the placeholder in `lib/keys.dart` with your actual Google Gemini API key.
-=======
-    Replace the placeholder in the `initializeModel()` function with your actual Google Gemini API key.
->>>>>>> master
 
     ```dart
     final apiKey = 'YOUR_GOOGLE_GEMINI_API_KEY';
@@ -97,7 +85,7 @@ FinSnap features a sleek and modern UI with a dark theme that emphasizes clarity
 
 ## 📱 App Screenshots
 
-<<<<<<< HEAD
+
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 10px;">
   <div >
     <h3>Home Screen</h3>
@@ -145,7 +133,6 @@ FinSnap features a sleek and modern UI with a dark theme that emphasizes clarity
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-<<<<<<< HEAD
 
 ## 📧 Contact
 
@@ -295,6 +282,6 @@ For any inquiries or support, please reach out via [email@domain.com](mailto:ema
 ---
 
 <p align="center">
-  Made with ❤️ using <strong>Flutter</strong>
+  Made with ❤️ by<strong> Vasan R🫰🏽🫰🏽🫰🏽 </strong>
 </p>
->>>>>>> master
+
